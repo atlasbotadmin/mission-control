@@ -1,7 +1,62 @@
 'use client';
 
+interface Agent {
+  name: string;
+  role: string;
+  model: string;
+  status: string;
+  description: string;
+  capabilities: string[];
+  lastActive: string;
+}
+
+function AgentCard({ agent }: { agent: Agent }) {
+  return (
+    <div className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors">
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div
+            className={`w-3 h-3 rounded-full ${
+              agent.status === 'online' ? 'bg-status animate-pulse' : 'bg-idle'
+            }`}
+          ></div>
+          <div>
+            <h3 className="font-semibold text-xl">{agent.name}</h3>
+            <p className="text-sm text-muted">{agent.role}</p>
+          </div>
+        </div>
+        <span className="px-3 py-1 bg-background text-xs rounded-full border border-border">
+          {agent.model}
+        </span>
+      </div>
+
+      <p className="text-sm text-muted mb-4">{agent.description}</p>
+
+      <div className="space-y-3">
+        <div>
+          <h4 className="text-xs font-semibold text-muted mb-2">CAPABILITIES</h4>
+          <div className="flex flex-wrap gap-2">
+            {agent.capabilities.map((cap, j) => (
+              <span key={j} className="px-2 py-1 bg-accent/10 text-accent text-xs rounded border border-accent/20">
+                {cap}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="pt-3 border-t border-border flex items-center justify-between text-xs">
+          <span className="text-muted">Last active</span>
+          <span className={agent.status === 'online' ? 'text-status' : 'text-idle'}>
+            {agent.lastActive}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AgentsPage() {
-  const agents = [
+  const agents: Agent[] = [
     { 
       name: 'Atlas', 
       role: 'Main', 
@@ -40,6 +95,9 @@ export default function AgentsPage() {
     },
   ];
 
+  const activeAgents = agents.filter(a => a.status === 'online');
+  const idleAgents = agents.filter(a => a.status === 'idle');
+
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -51,51 +109,36 @@ export default function AgentsPage() {
           <p className="text-muted mt-2">AI agents and their capabilities</p>
         </header>
 
-        {/* Agents Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {agents.map((agent, i) => (
-            <div key={i} className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`w-3 h-3 rounded-full ${
-                      agent.status === 'online' ? 'bg-status animate-pulse' : 'bg-idle'
-                    }`}
-                  ></div>
-                  <div>
-                    <h3 className="font-semibold text-xl">{agent.name}</h3>
-                    <p className="text-sm text-muted">{agent.role}</p>
-                  </div>
-                </div>
-                <span className="px-3 py-1 bg-background text-xs rounded-full border border-border">
-                  {agent.model}
-                </span>
-              </div>
+        {/* Active Agents */}
+        <section>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-2.5 h-2.5 rounded-full bg-status animate-pulse"></div>
+            <h2 className="text-lg font-semibold text-status">Active Agents</h2>
+            <span className="text-xs text-muted ml-1">({activeAgents.length})</span>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {activeAgents.map((agent, i) => (
+              <AgentCard key={i} agent={agent} />
+            ))}
+          </div>
+        </section>
 
-              <p className="text-sm text-muted mb-4">{agent.description}</p>
+        {/* Divider */}
+        <div className="border-t border-border"></div>
 
-              <div className="space-y-3">
-                <div>
-                  <h4 className="text-xs font-semibold text-muted mb-2">CAPABILITIES</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {agent.capabilities.map((cap, j) => (
-                      <span key={j} className="px-2 py-1 bg-accent/10 text-accent text-xs rounded border border-accent/20">
-                        {cap}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-3 border-t border-border flex items-center justify-between text-xs">
-                  <span className="text-muted">Last active</span>
-                  <span className={agent.status === 'online' ? 'text-status' : 'text-idle'}>
-                    {agent.lastActive}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Idle Agents */}
+        <section>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-2.5 h-2.5 rounded-full bg-idle"></div>
+            <h2 className="text-lg font-semibold text-idle">Idle Agents</h2>
+            <span className="text-xs text-muted ml-1">({idleAgents.length})</span>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {idleAgents.map((agent, i) => (
+              <AgentCard key={i} agent={agent} />
+            ))}
+          </div>
+        </section>
 
         {/* Add Agent Button */}
         <div className="flex justify-center pt-6">
