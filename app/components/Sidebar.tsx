@@ -46,8 +46,8 @@ const Sidebar = () => {
 
   const navItems = [
     { href: '/', icon: 'dashboard', label: 'Dashboard' },
-    { href: '/projects', icon: 'projects', label: 'Projects' },
     { href: '/agents', icon: 'agents', label: 'Agents' },
+    { href: '/projects', icon: 'projects', label: 'Projects' },
     { href: '/stats', icon: 'stats', label: 'Stats' },
   ];
 
