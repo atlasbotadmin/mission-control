@@ -314,7 +314,7 @@ export default function Home() {
               <div className="space-y-0">
                 {[
                   { emoji: '🚢', text: 'Hapag-Lloyd in advanced talks to acquire Zim' },
-                  { emoji: '🤖', text: 'Anthropic hits $380B valuation amid Pentagon AI dispute' },
+                  { emoji: '🧠', text: 'Anthropic hits $380B valuation amid Pentagon AI dispute' },
                   { emoji: '💻', text: 'SpaceX eyes dual-class share structure ahead of IPO' },
                   { emoji: '🌍', text: '250K rally in Munich for Iran regime change' },
                   { emoji: '📈', text: 'Container shipping rates pressured by Red Sea reopening' },
