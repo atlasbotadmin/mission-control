@@ -68,9 +68,9 @@ const Sidebar = () => {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-16 bg-[#080808] border-r border-[#1a1a1a] flex flex-col items-center py-6 z-50 overflow-hidden">
+    <aside className="fixed left-0 top-0 h-screen w-16 bg-[#080808] border-r border-[#1a1a1a] flex flex-col items-center py-4 z-50">
       {/* Logo */}
-      <div className="mb-8">
+      <div className="mb-6">
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
           {/* Hexagon monogram */}
           <polygon
@@ -124,7 +124,7 @@ const Sidebar = () => {
       <div className="flex-1" />
 
       {/* Bottom Navigation */}
-      <nav className="flex flex-col gap-2 border-t border-[#1a1a1a] pt-4">
+      <nav className="flex flex-col gap-2 border-t border-[#1a1a1a] pt-3 pb-2">
         {bottomItems.map((item) => (
           <Link
             key={item.href}
