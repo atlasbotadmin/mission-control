@@ -7,7 +7,7 @@ export default function SettingsPage() {
         {/* Header */}
         <header className="pb-6 border-b border-border">
           <h1 className="text-3xl font-bold">
-            <span className="text-accent">⚙️</span> Settings
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-2 align-middle"><circle cx="12" cy="12" r="3" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" /></svg> Settings
           </h1>
           <p className="text-muted mt-2">Configure your Mission Control preferences</p>
         </header>

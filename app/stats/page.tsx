@@ -26,7 +26,7 @@ export default function StatsPage() {
         {/* Header */}
         <header className="pb-6 border-b border-border">
           <h1 className="text-3xl font-bold">
-            <span className="text-accent">📊</span> Stats
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-2 align-middle"><path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20v-6" /></svg> Stats
           </h1>
           <p className="text-muted mt-2">Productivity insights and analytics</p>
         </header>
@@ -110,7 +110,7 @@ export default function StatsPage() {
           <h2 className="text-xl font-semibold mb-4">Recent Milestones</h2>
           <div className="space-y-3">
             <div className="flex items-center gap-3 text-sm">
-              <span className="text-accent text-2xl">🎯</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>
               <div>
                 <div className="font-medium">Completed AZ-900 Module 2</div>
                 <div className="text-muted text-xs">Feb 15, 2026</div>
