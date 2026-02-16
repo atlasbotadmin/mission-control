@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 export default function Home() {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
-  const [activeTab, setActiveTab] = useState('next-actions');
 
   useEffect(() => {
     const updateDateTime = () => {
@@ -18,28 +17,10 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const tasks = {
-    'next-actions': [
-      { title: 'Review AZ-900 Module 3', list: 'Learning', due: 'Today', overdue: false },
-      { title: 'Submit timesheet', list: 'Work', due: 'Feb 16', overdue: false },
-      { title: 'Call venue coordinator', list: 'Wedding', due: 'Feb 14', overdue: true },
-    ],
-    'waiting-for': [
-      { title: 'Response from wedding DJ', list: 'Wedding', due: null, overdue: false },
-      { title: 'Port Houston badge renewal', list: 'Work', due: null, overdue: false },
-    ],
-    'someday-maybe': [
-      { title: 'Learn Python automation', list: 'Learning', due: null, overdue: false },
-      { title: 'Set up home lab', list: 'Tech', due: null, overdue: false },
-    ],
-  };
-
   const projects = [
     { name: 'EA Launch', target: 'Feb 17, 2026', progress: 85 },
     { name: 'Wedding Planning', target: 'Sep 2026', progress: 30 },
     { name: 'MO-210 Excel Certification', target: null, progress: 60 },
-    { name: 'AZ-900 Azure Fundamentals', target: null, progress: 40 },
-    { name: 'DP-900 Azure Data Fundamentals', target: null, progress: 15 },
   ];
 
   const agents = [
@@ -113,70 +94,12 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Tasks & GTD */}
+            {/* Projects Summary */}
             <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Tasks</h2>
-              <div className="flex gap-2 mb-4 border-b border-border">
-                <button
-                  onClick={() => setActiveTab('next-actions')}
-                  className={`pb-3 px-1 text-sm font-medium transition-colors ${
-                    activeTab === 'next-actions'
-                      ? 'text-accent border-b-2 border-accent'
-                      : 'text-muted hover:text-text'
-                  }`}
-                >
-                  Next Actions
-                </button>
-                <button
-                  onClick={() => setActiveTab('waiting-for')}
-                  className={`pb-3 px-1 text-sm font-medium transition-colors ${
-                    activeTab === 'waiting-for'
-                      ? 'text-accent border-b-2 border-accent'
-                      : 'text-muted hover:text-text'
-                  }`}
-                >
-                  Waiting For
-                </button>
-                <button
-                  onClick={() => setActiveTab('someday-maybe')}
-                  className={`pb-3 px-1 text-sm font-medium transition-colors ${
-                    activeTab === 'someday-maybe'
-                      ? 'text-accent border-b-2 border-accent'
-                      : 'text-muted hover:text-text'
-                  }`}
-                >
-                  Someday/Maybe
-                </button>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold">Projects</h2>
+                <a href="/projects" className="text-sm text-accent hover:underline">View all →</a>
               </div>
-              <div className="space-y-2">
-                {tasks[activeTab as keyof typeof tasks].map((task, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-background/50 transition-colors"
-                  >
-                    <input type="checkbox" className="mt-1 accent-accent" />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className={task.overdue ? 'text-red-400' : ''}>{task.title}</span>
-                      </div>
-                      <div className="flex items-center gap-2 mt-1 text-xs text-muted">
-                        <span>{task.list}</span>
-                        {task.due && (
-                          <>
-                            <span>•</span>
-                            <span className={task.overdue ? 'text-red-400' : ''}>{task.due}</span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Projects */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Projects</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {projects.map((project, i) => (
                   <div key={i} className="border border-border rounded-lg p-4">
@@ -205,7 +128,10 @@ export default function Home() {
           <div className="space-y-6">
             {/* Agents Panel */}
             <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Agents</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold">Agents</h2>
+                <a href="/agents" className="text-sm text-accent hover:underline">View all →</a>
+              </div>
               <div className="space-y-3">
                 {agents.map((agent, i) => (
                   <div key={i} className="flex items-center justify-between p-3 border border-border rounded-lg">
@@ -226,9 +152,12 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Stats/Activity */}
+            {/* Stats */}
             <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Stats</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold">Stats</h2>
+                <a href="/stats" className="text-sm text-accent hover:underline">View all →</a>
+              </div>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted">Tasks this week</span>

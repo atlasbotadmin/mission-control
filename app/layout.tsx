@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Sidebar from "./components/Sidebar";
 
 export const metadata: Metadata = {
   title: "Atlas Mission Control",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Sidebar />
+        <main className="pl-16">{children}</main>
+      </body>
     </html>
   );
 }
