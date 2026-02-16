@@ -42,6 +42,12 @@ const icons: Record<string, (color: string) => ReactNode> = {
       <path d="M17 7h3a1 1 0 0 1 1 1v1a3 3 0 0 1-3 3h-1" />
     </svg>
   ),
+  activity: (color) => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <polyline points="12 7 12 12 15.5 14" />
+    </svg>
+  ),
   settings: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="3" />
@@ -58,6 +64,7 @@ const Sidebar = () => {
     { href: '/agents', icon: 'agents', label: 'Agents' },
     { href: '/projects', icon: 'projects', label: 'Projects' },
     { href: '/certifications', icon: 'certifications', label: 'Certifications' },
+    { href: '/activity', icon: 'activity', label: 'Activity' },
   ];
 
   const bottomItems = [
