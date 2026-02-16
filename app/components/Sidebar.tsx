@@ -33,6 +33,14 @@ const icons: Record<string, (color: string) => ReactNode> = {
       <path d="M6 20v-6" />
     </svg>
   ),
+  certifications: (color) => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="10" r="6" />
+      <path d="M12 16v6" />
+      <path d="M8 22l4-2 4 2" />
+      <path d="M10 7l2 2 4-4" />
+    </svg>
+  ),
   settings: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="3" />
@@ -49,6 +57,7 @@ const Sidebar = () => {
     { href: '/agents', icon: 'agents', label: 'Agents' },
     { href: '/projects', icon: 'projects', label: 'Projects' },
     { href: '/stats', icon: 'stats', label: 'Stats' },
+    { href: '/certifications', icon: 'certifications', label: 'Certifications' },
   ];
 
   const isActive = (path: string) => pathname === path;
