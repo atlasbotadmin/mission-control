@@ -243,7 +243,7 @@ export default function Home() {
                 ].map((item, i) => (
                   <div key={i} className={`flex items-start gap-4 py-4 ${i > 0 ? 'border-t border-border/50' : ''}`}>
                     <span className="text-xl shrink-0">{item.emoji}</span>
-                    <span className="text-base text-muted">{item.text}</span>
+                    <span className="text-base text-[#ddd]">{item.text}</span>
                   </div>
                 ))}
               </div>
