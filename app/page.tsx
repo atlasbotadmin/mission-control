@@ -101,7 +101,7 @@ function MiniCalendar() {
       </div>
 
       {/* Calendar grid */}
-      <div className="grid grid-cols-7 gap-y-1">
+      <div className="grid grid-cols-7 gap-y-3">
         {cells.map((day, i) => {
           if (day === null) return <div key={i} />;
           const key = getDateKey(viewYear, viewMonth, day);
@@ -112,7 +112,7 @@ function MiniCalendar() {
             <button
               key={i}
               onClick={() => setSelectedDate(key)}
-              className={`relative aspect-square w-10 flex flex-col items-center justify-center text-sm rounded-md transition-all mx-auto ${
+              className={`relative aspect-square w-11 flex flex-col items-center justify-center text-sm rounded-md transition-all mx-auto ${
                 isSelected
                   ? 'bg-accent text-white font-semibold'
                   : isToday
