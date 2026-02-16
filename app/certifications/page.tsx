@@ -126,13 +126,6 @@ const initialCertifications: Certification[] = [
   },
 ];
 
-const studyLog = [
-  { date: 'Feb 15', subject: 'AZ-900 Module 3', duration: '45 min' },
-  { date: 'Feb 13', subject: 'MO-210 Formulas Practice', duration: '1 hr' },
-  { date: 'Feb 11', subject: 'DP-900 Core Concepts', duration: '30 min' },
-  { date: 'Feb 9', subject: 'AZ-900 Module 2 Review', duration: '1 hr' },
-  { date: 'Feb 7', subject: 'MO-210 Tables Deep Dive', duration: '45 min' },
-];
 
 function StatusBadge({ status }: { status: string }) {
   const colors: Record<string, string> = {
@@ -366,21 +359,6 @@ export default function CertificationsPage() {
         })}
       </div>
 
-      {/* Study Log */}
-      <div className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-6">
-        <h2 className="text-lg font-semibold text-white mb-4">Recent Study Sessions</h2>
-        <div className="space-y-3">
-          {studyLog.map((entry, i) => (
-            <div key={i} className="flex items-center justify-between py-2 border-b border-[#1a1a1a] last:border-0">
-              <div className="flex items-center gap-4">
-                <span className="text-xs text-[#888] w-14">{entry.date}</span>
-                <span className="text-sm text-[#ccc]">{entry.subject}</span>
-              </div>
-              <span className="text-sm text-[#888]">{entry.duration}</span>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
