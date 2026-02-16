@@ -35,10 +35,9 @@ const icons: Record<string, (color: string) => ReactNode> = {
   ),
   certifications: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="10" r="6" />
-      <path d="M12 16v6" />
-      <path d="M8 22l4-2 4 2" />
-      <path d="M10 7l2 2 4-4" />
+      <circle cx="12" cy="9" r="5.5" />
+      <polygon points="12,5.5 13.1,7.8 15.5,8.1 13.75,9.85 14.2,12.3 12,11.1 9.8,12.3 10.25,9.85 8.5,8.1 10.9,7.8" />
+      <path d="M8.5 13.5L7 22l5-2.5L17 22l-1.5-8.5" />
     </svg>
   ),
   settings: (color) => (
