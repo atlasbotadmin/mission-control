@@ -299,7 +299,7 @@ export default function CertificationsPage() {
                 onClick={() => toggleCert(cert.id)}
                 className="text-xs text-[#888] hover:text-white transition-colors mb-3"
               >
-                {expandedCerts[cert.id] ? <><span className="text-base">▾</span> Hide modules</> : <><span className="text-base">▸</span> Show modules</>}
+                {expandedCerts[cert.id] ? <><span className="text-lg">▾</span> Hide modules</> : <><span className="text-lg">▸</span> Show modules</>}
               </button>
 
               {expandedCerts[cert.id] && (
@@ -317,7 +317,7 @@ export default function CertificationsPage() {
                           onClick={() => toggleModule(modKey)}
                           className="flex items-center gap-3 py-2 px-2 rounded-lg cursor-pointer hover:bg-[#111] transition-colors group"
                         >
-                          <span className="text-base text-[#555] group-hover:text-[#888] transition-all duration-200 w-5 inline-flex items-center justify-center">
+                          <span className="text-lg text-[#555] group-hover:text-[#888] transition-all duration-200 w-5 inline-flex items-center justify-center">
                             {isExpanded ? '▾' : '▸'}
                           </span>
                           <PartialCheckbox
