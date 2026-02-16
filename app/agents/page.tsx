@@ -59,7 +59,7 @@ export default function AgentsPage() {
                 <div className="flex items-center gap-3">
                   <div
                     className={`w-3 h-3 rounded-full ${
-                      agent.status === 'online' ? 'bg-status animate-pulse' : 'bg-gray-600'
+                      agent.status === 'online' ? 'bg-status animate-pulse' : 'bg-idle'
                     }`}
                   ></div>
                   <div>
@@ -88,7 +88,7 @@ export default function AgentsPage() {
 
                 <div className="pt-3 border-t border-border flex items-center justify-between text-xs">
                   <span className="text-muted">Last active</span>
-                  <span className={agent.status === 'online' ? 'text-status' : 'text-text'}>
+                  <span className={agent.status === 'online' ? 'text-status' : 'text-idle'}>
                     {agent.lastActive}
                   </span>
                 </div>

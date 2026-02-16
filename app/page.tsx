@@ -265,7 +265,7 @@ export default function Home() {
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-2 h-2 rounded-full ${
-                          agent.status === 'online' ? 'bg-status' : 'bg-gray-600'
+                          agent.status === 'online' ? 'bg-status' : 'bg-idle'
                         }`}
                       ></div>
                       <div>

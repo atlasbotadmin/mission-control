@@ -14,6 +14,7 @@ const config: Config = {
         border: "#252525",
         accent: "#0080FF",
         status: "#00d4aa",
+        idle: "#F59E0B",
         text: "#ededed",
         muted: "#888",
       },
