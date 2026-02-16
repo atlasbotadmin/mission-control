@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Sidebar />
-        <main className="pl-16">{children}</main>
+        <main className="pl-16 h-screen overflow-y-auto flex-1">{children}</main>
       </body>
     </html>
   );
