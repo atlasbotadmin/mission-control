@@ -221,6 +221,34 @@ export default function Home() {
             {/* Calendar Panel */}
             <MiniCalendar />
 
+            {/* Headlines */}
+            <div className="bg-card border border-border rounded-lg p-8">
+              <div className="flex items-center gap-3 mb-5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                  <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/>
+                </svg>
+                <h2 className="text-xl font-semibold">Headlines</h2>
+              </div>
+              <div className="space-y-0">
+                {[
+                  { emoji: '🚢', text: 'Hapag-Lloyd in advanced talks to acquire Zim' },
+                  { emoji: '🧠', text: 'Anthropic hits $380B valuation amid Pentagon AI dispute' },
+                  { emoji: '💻', text: 'SpaceX eyes dual-class share structure ahead of IPO' },
+                  { emoji: '🌍', text: '250K rally in Munich for Iran regime change' },
+                  { emoji: '📈', text: 'Container shipping rates pressured by Red Sea reopening' },
+                ].map((item, i) => (
+                  <div key={i} className={`flex items-start gap-4 py-4 ${i > 0 ? 'border-t border-border/50' : ''}`}>
+                    <span className="text-xl shrink-0">{item.emoji}</span>
+                    <span className="text-base text-muted">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 pt-4 border-t border-border">
+                <span className="text-xs text-muted">Updated 4:15 AM</span>
+              </div>
+            </div>
+
             {/* Projects Summary */}
             <div className="bg-card border border-border rounded-lg p-6">
               <div className="flex items-center justify-between mb-4">
@@ -299,34 +327,6 @@ export default function Home() {
                     <div className="text-xs text-muted">{agent.model}</div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Headlines */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted">
-                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
-                  <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/>
-                </svg>
-                <h2 className="text-xl font-semibold">Headlines</h2>
-              </div>
-              <div className="space-y-0">
-                {[
-                  { emoji: '🚢', text: 'Hapag-Lloyd in advanced talks to acquire Zim' },
-                  { emoji: '🧠', text: 'Anthropic hits $380B valuation amid Pentagon AI dispute' },
-                  { emoji: '💻', text: 'SpaceX eyes dual-class share structure ahead of IPO' },
-                  { emoji: '🌍', text: '250K rally in Munich for Iran regime change' },
-                  { emoji: '📈', text: 'Container shipping rates pressured by Red Sea reopening' },
-                ].map((item, i) => (
-                  <div key={i} className={`flex items-start gap-3 py-2.5 ${i > 0 ? 'border-t border-border/50' : ''}`}>
-                    <span className="text-sm shrink-0">{item.emoji}</span>
-                    <span className="text-sm text-muted">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-3 pt-3 border-t border-border">
-                <span className="text-xs text-muted">Updated 4:15 AM</span>
               </div>
             </div>
 
