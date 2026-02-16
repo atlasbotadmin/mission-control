@@ -58,15 +58,23 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="mb-8">
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-          {/* A shape - two legs and crossbar as circuit traces */}
-          <path d="M7 28L17 6L27 28" stroke="#0080FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-          <path d="M10.5 20H23.5" stroke="#0080FF" strokeWidth="2" strokeLinecap="round" />
-          {/* Circuit node dots at vertices */}
-          <circle cx="17" cy="6" r="3" fill="#0080FF" />
-          <circle cx="7" cy="28" r="3" fill="#0080FF" />
-          <circle cx="27" cy="28" r="3" fill="#0080FF" />
-          <circle cx="10.5" cy="20" r="2.5" fill="#0080FF" />
-          <circle cx="23.5" cy="20" r="2.5" fill="#0080FF" />
+          {/* Stacked Bars A - glitch aesthetic */}
+          {/* Top peak bar */}
+          <rect x="14" y="4" width="6" height="2.5" rx="0.5" fill="#0080FF" opacity="0.7" />
+          {/* Second bar - slight glitch offset */}
+          <rect x="11.5" y="8" width="12" height="2.5" rx="0.5" fill="#0080FF" opacity="0.85" />
+          {/* Third bar - glitch shifted right */}
+          <rect x="10" y="12" width="15" height="2.5" rx="0.5" fill="#0080FF" opacity="1" />
+          {/* Crossbar - full width, bright */}
+          <rect x="8" y="16" width="18" height="3" rx="0.5" fill="#0080FF" opacity="1" />
+          {/* Below crossbar - split into two legs */}
+          <rect x="6.5" y="20.5" width="7" height="2.5" rx="0.5" fill="#0080FF" opacity="0.9" />
+          <rect x="20.5" y="20.5" width="7" height="2.5" rx="0.5" fill="#0080FF" opacity="0.9" />
+          {/* Bottom bars - legs wider apart, glitch offset */}
+          <rect x="4.5" y="24.5" width="7.5" height="2.5" rx="0.5" fill="#0080FF" opacity="0.75" />
+          <rect x="22.5" y="24.5" width="7.5" height="2.5" rx="0.5" fill="#0080FF" opacity="0.6" />
+          {/* Glitch artifact - thin offset bar */}
+          <rect x="13" y="14.5" width="4" height="1" rx="0.3" fill="#0080FF" opacity="0.35" />
         </svg>
       </div>
 
