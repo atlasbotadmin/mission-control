@@ -81,9 +81,9 @@ function MiniCalendar() {
   const selectedLabel = selectedDateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 
   return (
-    <div className="bg-card border border-border rounded-lg p-6">
+    <div className="bg-card border border-border rounded-lg p-8">
       {/* Month nav */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-6">
         <button onClick={prevMonth} className="text-muted hover:text-foreground transition-colors p-1">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
@@ -94,14 +94,14 @@ function MiniCalendar() {
       </div>
 
       {/* Day headers */}
-      <div className="grid grid-cols-7 mb-1">
+      <div className="grid grid-cols-7 pb-3 mb-3" style={{ borderBottom: '1px solid #252525' }}>
         {dayHeaders.map((d, i) => (
           <div key={i} className="text-center text-xs text-muted py-1">{d}</div>
         ))}
       </div>
 
       {/* Calendar grid */}
-      <div className="grid grid-cols-7">
+      <div className="grid grid-cols-7 gap-y-1">
         {cells.map((day, i) => {
           if (day === null) return <div key={i} />;
           const key = getDateKey(viewYear, viewMonth, day);
