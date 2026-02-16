@@ -15,9 +15,9 @@ const icons: Record<string, (color: string) => ReactNode> = {
   ),
   projects: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4.5 16.5L12 3l7.5 13.5" />
-      <path d="M12 3v18" />
-      <path d="M4.5 16.5c0 2.5 3.4 4.5 7.5 4.5s7.5-2 7.5-4.5" />
+      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+      <path d="M2 17l10 5 10-5" />
+      <path d="M2 12l10 5 10-5" />
     </svg>
   ),
   agents: (color) => (
