@@ -112,7 +112,7 @@ const Sidebar = () => {
             {isActive(item.href) && (
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
             )}
-            {icons[item.icon](isActive(item.href) ? '#0080FF' : '#888')}
+            {icons[item.icon](isActive(item.href) ? '#0080FF' : '#bbb')}
             <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
               {item.label}
             </span>
@@ -143,7 +143,7 @@ const Sidebar = () => {
             {isActive(item.href) && (
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
             )}
-            {icons[item.icon](isActive(item.href) ? '#0080FF' : '#888')}
+            {icons[item.icon](isActive(item.href) ? '#0080FF' : '#bbb')}
             <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
               {item.label}
             </span>
