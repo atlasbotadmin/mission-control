@@ -13,6 +13,7 @@ const config: Config = {
         card: "#141414",
         border: "#252525",
         accent: "#0080FF",
+        status: "#00d4aa",
         text: "#ededed",
         muted: "#888",
       },

@@ -55,8 +55,8 @@ export default function Home() {
           <div className="flex items-center gap-6 text-sm">
             <div className="text-muted">{currentDate} • {currentTime}</div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
-              <span className="text-accent">Online</span>
+              <div className="w-2 h-2 rounded-full bg-status animate-pulse"></div>
+              <span className="text-status">Online</span>
             </div>
           </div>
         </header>
@@ -138,7 +138,7 @@ export default function Home() {
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-2 h-2 rounded-full ${
-                          agent.status === 'online' ? 'bg-accent' : 'bg-gray-600'
+                          agent.status === 'online' ? 'bg-status' : 'bg-gray-600'
                         }`}
                       ></div>
                       <div>
