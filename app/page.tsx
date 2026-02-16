@@ -112,7 +112,7 @@ function MiniCalendar() {
             <button
               key={i}
               onClick={() => setSelectedDate(key)}
-              className={`relative flex flex-col items-center justify-center py-1.5 text-sm rounded-md transition-all ${
+              className={`relative aspect-square w-10 flex flex-col items-center justify-center text-sm rounded-md transition-all mx-auto ${
                 isSelected
                   ? 'bg-accent text-white font-semibold'
                   : isToday
@@ -122,7 +122,7 @@ function MiniCalendar() {
             >
               {day}
               {hasEvents && (
-                <span className={`absolute bottom-0.5 w-1 h-1 rounded-full ${isSelected ? 'bg-white' : 'bg-accent'}`} />
+                <span className={`absolute bottom-1 w-1 h-1 rounded-full ${isSelected ? 'bg-white' : 'bg-accent'}`} />
               )}
             </button>
           );
