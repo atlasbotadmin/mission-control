@@ -57,10 +57,16 @@ const Sidebar = () => {
     <aside className="fixed left-0 top-0 h-screen w-16 bg-[#080808] border-r border-[#1a1a1a] flex flex-col items-center py-6 z-50">
       {/* Logo */}
       <div className="mb-8">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <rect width="40" height="40" rx="10" fill="#0080FF" />
-          <path d="M12 28L20 10L28 28" stroke="#080808" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M14.5 23H25.5" stroke="#080808" strokeWidth="2.5" strokeLinecap="round" />
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          {/* A shape - two legs and crossbar as circuit traces */}
+          <path d="M7 28L17 6L27 28" stroke="#0080FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <path d="M10.5 20H23.5" stroke="#0080FF" strokeWidth="2" strokeLinecap="round" />
+          {/* Circuit node dots at vertices */}
+          <circle cx="17" cy="6" r="3" fill="#0080FF" />
+          <circle cx="7" cy="28" r="3" fill="#0080FF" />
+          <circle cx="27" cy="28" r="3" fill="#0080FF" />
+          <circle cx="10.5" cy="20" r="2.5" fill="#0080FF" />
+          <circle cx="23.5" cy="20" r="2.5" fill="#0080FF" />
         </svg>
       </div>
 
