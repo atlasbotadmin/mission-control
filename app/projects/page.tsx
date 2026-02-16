@@ -15,7 +15,7 @@ export default function ProjectsPage() {
         {/* Header */}
         <header className="pb-6 border-b border-border">
           <h1 className="text-3xl font-bold">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-2 align-middle"><path d="M4.5 16.5L12 3l7.5 13.5" /><path d="M12 3v18" /><path d="M4.5 16.5c0 2.5 3.4 4.5 7.5 4.5s7.5-2 7.5-4.5" /></svg> Projects
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0080FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-2 align-middle"><path d="M4.5 16.5L12 3l7.5 13.5" /><path d="M12 3v18" /><path d="M4.5 16.5c0 2.5 3.4 4.5 7.5 4.5s7.5-2 7.5-4.5" /></svg> Projects
           </h1>
           <p className="text-muted mt-2">Active projects and goals</p>
         </header>

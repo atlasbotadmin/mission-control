@@ -62,7 +62,7 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="mb-8">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <rect width="40" height="40" rx="10" fill="#00d4aa" />
+          <rect width="40" height="40" rx="10" fill="#0080FF" />
           <path d="M12 28L20 10L28 28" stroke="#080808" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M14.5 23H25.5" stroke="#080808" strokeWidth="2.5" strokeLinecap="round" />
         </svg>
@@ -88,7 +88,7 @@ const Sidebar = () => {
             {isActive(item.href) && (
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
             )}
-            {icons[item.icon](isActive(item.href) ? '#00d4aa' : '#888')}
+            {icons[item.icon](isActive(item.href) ? '#0080FF' : '#888')}
             {/* Tooltip */}
             <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
               {item.label}
@@ -114,7 +114,7 @@ const Sidebar = () => {
         {isActive('/settings') && (
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
         )}
-        {icons.settings(isActive('/settings') ? '#00d4aa' : '#888')}
+        {icons.settings(isActive('/settings') ? '#0080FF' : '#888')}
         {/* Tooltip */}
         <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
           Settings

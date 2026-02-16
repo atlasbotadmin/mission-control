@@ -46,7 +46,7 @@ export default function AgentsPage() {
         {/* Header */}
         <header className="pb-6 border-b border-border">
           <h1 className="text-3xl font-bold">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4aa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-2 align-middle"><rect x="4" y="4" width="16" height="16" rx="3" /><circle cx="9" cy="10" r="1.5" /><circle cx="15" cy="10" r="1.5" /><path d="M9 15.5c0 0 1.5 1.5 3 1.5s3-1.5 3-1.5" /><path d="M9 1v3" /><path d="M15 1v3" /></svg> Agents
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0080FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-2 align-middle"><rect x="4" y="4" width="16" height="16" rx="3" /><circle cx="9" cy="10" r="1.5" /><circle cx="15" cy="10" r="1.5" /><path d="M9 15.5c0 0 1.5 1.5 3 1.5s3-1.5 3-1.5" /><path d="M9 1v3" /><path d="M15 1v3" /></svg> Agents
           </h1>
           <p className="text-muted mt-2">AI agents and their capabilities</p>
         </header>
