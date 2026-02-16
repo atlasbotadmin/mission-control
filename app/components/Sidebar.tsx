@@ -58,23 +58,23 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="mb-8">
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-          {/* Stacked Bars A - glitch aesthetic */}
-          {/* Top peak bar */}
-          <rect x="14" y="4" width="6" height="2.5" rx="0.5" fill="#0080FF" opacity="0.7" />
-          {/* Second bar - slight glitch offset */}
-          <rect x="11.5" y="8" width="12" height="2.5" rx="0.5" fill="#0080FF" opacity="0.85" />
-          {/* Third bar - glitch shifted right */}
-          <rect x="10" y="12" width="15" height="2.5" rx="0.5" fill="#0080FF" opacity="1" />
-          {/* Crossbar - full width, bright */}
-          <rect x="8" y="16" width="18" height="3" rx="0.5" fill="#0080FF" opacity="1" />
-          {/* Below crossbar - split into two legs */}
-          <rect x="6.5" y="20.5" width="7" height="2.5" rx="0.5" fill="#0080FF" opacity="0.9" />
-          <rect x="20.5" y="20.5" width="7" height="2.5" rx="0.5" fill="#0080FF" opacity="0.9" />
-          {/* Bottom bars - legs wider apart, glitch offset */}
-          <rect x="4.5" y="24.5" width="7.5" height="2.5" rx="0.5" fill="#0080FF" opacity="0.75" />
-          <rect x="22.5" y="24.5" width="7.5" height="2.5" rx="0.5" fill="#0080FF" opacity="0.6" />
-          {/* Glitch artifact - thin offset bar */}
-          <rect x="13" y="14.5" width="4" height="1" rx="0.3" fill="#0080FF" opacity="0.35" />
+          {/* Hexagon monogram */}
+          <polygon
+            points="17,2 29.5,9.25 29.5,24.75 17,32 4.5,24.75 4.5,9.25"
+            stroke="#0080FF"
+            strokeWidth="1.8"
+            fill="none"
+          />
+          <text
+            x="17"
+            y="22.5"
+            textAnchor="middle"
+            fill="#0080FF"
+            fontSize="18"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            fontWeight="600"
+            letterSpacing="-0.5"
+          >A</text>
         </svg>
       </div>
 
