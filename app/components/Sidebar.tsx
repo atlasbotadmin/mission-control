@@ -57,8 +57,12 @@ const Sidebar = () => {
     { href: '/', icon: 'dashboard', label: 'Dashboard' },
     { href: '/agents', icon: 'agents', label: 'Agents' },
     { href: '/projects', icon: 'projects', label: 'Projects' },
-    { href: '/stats', icon: 'stats', label: 'Stats' },
     { href: '/certifications', icon: 'certifications', label: 'Certifications' },
+  ];
+
+  const bottomItems = [
+    { href: '/stats', icon: 'stats', label: 'Stats' },
+    { href: '/settings', icon: 'settings', label: 'Settings' },
   ];
 
   const isActive = (path: string) => pathname === path;
@@ -88,8 +92,8 @@ const Sidebar = () => {
         </svg>
       </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 flex flex-col gap-2">
+      {/* Main Navigation */}
+      <nav className="flex flex-col gap-2">
         {navItems.map((item) => (
           <Link
             key={item.href}
@@ -109,7 +113,6 @@ const Sidebar = () => {
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
             )}
             {icons[item.icon](isActive(item.href) ? '#0080FF' : '#888')}
-            {/* Tooltip */}
             <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
               {item.label}
             </span>
@@ -117,29 +120,36 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      {/* Settings at bottom */}
-      <Link
-        href="/settings"
-        className={`
-          w-12 h-12 rounded-lg flex items-center justify-center
-          transition-all duration-200 relative group
-          ${
-            isActive('/settings')
-              ? 'bg-accent/10'
-              : 'hover:bg-[#1a1a1a]'
-          }
-        `}
-        title="Settings"
-      >
-        {isActive('/settings') && (
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
-        )}
-        {icons.settings(isActive('/settings') ? '#0080FF' : '#888')}
-        {/* Tooltip */}
-        <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
-          Settings
-        </span>
-      </Link>
+      {/* Spacer */}
+      <div className="flex-1" />
+
+      {/* Bottom Navigation */}
+      <nav className="flex flex-col gap-2 border-t border-[#1a1a1a] pt-4">
+        {bottomItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`
+              w-12 h-12 rounded-lg flex items-center justify-center
+              transition-all duration-200 relative group
+              ${
+                isActive(item.href)
+                  ? 'bg-accent/10'
+                  : 'hover:bg-[#1a1a1a]'
+              }
+            `}
+            title={item.label}
+          >
+            {isActive(item.href) && (
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
+            )}
+            {icons[item.icon](isActive(item.href) ? '#0080FF' : '#888')}
+            <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
+              {item.label}
+            </span>
+          </Link>
+        ))}
+      </nav>
     </aside>
   );
 };
