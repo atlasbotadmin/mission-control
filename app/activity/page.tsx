@@ -1,4 +1,5 @@
 'use client';
+import PageHeader from '../components/PageHeader';
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
@@ -13,24 +14,15 @@ const MAX_HOURS = 12;
 
 export default function ActivityPage() {
   return (
-    <div className="min-h-screen p-8 md:p-12">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center gap-3">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0080FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="9" />
-            <polyline points="12 7 12 12 15.5 14" />
-          </svg>
-          <h1 className="text-3xl font-bold">
-              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Activity
-            </h1>
-        </div>
+    <div className="min-h-screen">
+      <PageHeader title="Activity" right={
         <div className="flex items-center gap-3 text-sm">
           <button className="w-8 h-8 rounded-lg bg-[#141414] border border-[#252525] flex items-center justify-center text-[#888] hover:text-white hover:border-[#333] transition-colors">‹</button>
           <span className="text-[#ccc] font-medium px-2">Feb 10 – Feb 16, 2026</span>
           <button className="w-8 h-8 rounded-lg bg-[#141414] border border-[#252525] flex items-center justify-center text-[#888] hover:text-white hover:border-[#333] transition-colors">›</button>
         </div>
-      </div>
+      } />
+      <div className="p-8 md:p-12">
 
       {/* Key Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -167,6 +159,7 @@ export default function ActivityPage() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

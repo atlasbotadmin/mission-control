@@ -1,4 +1,5 @@
 'use client';
+import PageHeader from '../components/PageHeader';
 
 interface Agent {
   name: string;
@@ -99,15 +100,9 @@ export default function AgentsPage() {
   const idleAgents = agents.filter(a => a.status === 'idle');
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <header className="pb-6 border-b border-border">
-          <h1 className="text-3xl font-bold">
-              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Agents
-            </h1>
-          <p className="text-muted mt-2">AI agents and their capabilities</p>
-        </header>
+    <div className="min-h-screen bg-background">
+      <PageHeader title="Agents" subtitle="AI agents and their capabilities" />
+      <div className="max-w-7xl mx-auto space-y-6 p-4 md:p-8">
 
         {/* Active Agents */}
         <section>

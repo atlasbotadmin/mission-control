@@ -1,16 +1,11 @@
 'use client';
+import PageHeader from '../components/PageHeader';
 
 export default function SettingsPage() {
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header */}
-        <header className="pb-6 border-b border-border">
-          <h1 className="text-3xl font-bold">
-              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Settings
-            </h1>
-          <p className="text-muted mt-2">Configure your Mission Control preferences</p>
-        </header>
+    <div className="min-h-screen bg-background">
+      <PageHeader title="Settings" subtitle="Configure your dashboard preferences" />
+      <div className="max-w-4xl mx-auto space-y-6 p-4 md:p-8">
 
         {/* Settings Sections */}
         <div className="space-y-6">

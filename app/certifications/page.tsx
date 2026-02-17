@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo } from 'react';
+import PageHeader from '../components/PageHeader';
 
 interface SubSection {
   name: string;
@@ -235,20 +236,9 @@ export default function CertificationsPage() {
   const getStatus = (progress: number) => progress === 100 ? 'Completed' : progress === 0 ? 'Not Started' : 'In Progress';
 
   return (
-    <div className="min-h-screen bg-background text-text p-8 pl-24">
-      <div className="flex items-center gap-3 mb-1">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0080FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M8 21h8" />
-          <path d="M12 17v4" />
-          <path d="M7 4h10v7a5 5 0 0 1-10 0V4z" />
-          <path d="M7 7H4a1 1 0 0 0-1 1v1a3 3 0 0 0 3 3h1" />
-          <path d="M17 7h3a1 1 0 0 1 1 1v1a3 3 0 0 1-3 3h-1" />
-        </svg>
-        <h1 className="text-3xl font-bold">
-              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Certifications
-            </h1>
-      </div>
-      <p className="text-[#888] mb-8 ml-[40px]">Track your professional development</p>
+    <div className="min-h-screen bg-background text-text">
+      <PageHeader title="Certifications" subtitle="Track your professional development" />
+      <div className="p-8">
 
       {/* Stats Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
@@ -360,7 +350,7 @@ export default function CertificationsPage() {
           );
         })}
       </div>
-
+      </div>
     </div>
   );
 }

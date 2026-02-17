@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import PageHeader from './components/PageHeader';
 
 // Mock event data
 const eventData: Record<string, { time: string; title: string }[]> = {
@@ -184,23 +185,17 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-border">
-          <div>
-            <h1 className="text-3xl font-bold">
-              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Dashboard
-            </h1>
+    <div className="min-h-screen bg-background">
+      <PageHeader title="Dashboard" right={
+        <div className="flex items-center gap-6 text-sm">
+          <div className="text-muted">{currentDate} • {currentTime}</div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-status animate-pulse"></div>
+            <span className="text-status">Online</span>
           </div>
-          <div className="flex items-center gap-6 text-sm">
-            <div className="text-muted">{currentDate} • {currentTime}</div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-status animate-pulse"></div>
-              <span className="text-status">Online</span>
-            </div>
-          </div>
-        </header>
+        </div>
+      } />
+      <div className="max-w-7xl mx-auto space-y-6 p-4 md:p-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column */}

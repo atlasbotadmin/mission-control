@@ -1,4 +1,5 @@
 'use client';
+import PageHeader from '../components/PageHeader';
 
 export default function ProjectsPage() {
   const projects = [
@@ -10,15 +11,9 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <header className="pb-6 border-b border-border">
-          <h1 className="text-3xl font-bold">
-              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Projects
-            </h1>
-          <p className="text-muted mt-2">Active projects and goals</p>
-        </header>
+    <div className="min-h-screen bg-background">
+      <PageHeader title="Projects" subtitle="Active projects and goals" />
+      <div className="max-w-7xl mx-auto space-y-6 p-4 md:p-8">
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
