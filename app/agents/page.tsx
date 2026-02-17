@@ -111,7 +111,7 @@ export default function AgentsPage() {
             <h2 className="text-lg font-semibold text-status">Active Agents</h2>
             <span className="text-xs text-muted ml-1">({activeAgents.length})</span>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {activeAgents.map((agent, i) => (
               <AgentCard key={i} agent={agent} />
             ))}
@@ -128,7 +128,7 @@ export default function AgentsPage() {
             <h2 className="text-lg font-semibold text-idle">Idle Agents</h2>
             <span className="text-xs text-muted ml-1">({idleAgents.length})</span>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {idleAgents.map((agent, i) => (
               <AgentCard key={i} agent={agent} />
             ))}
