@@ -333,25 +333,34 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Stats */}
+            {/* Certifications */}
             <div className="bg-card border border-border rounded-lg p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold">Stats</h2>
-                <a href="/stats" className="text-sm text-accent hover:underline">View all →</a>
+                <h2 className="text-xl font-semibold">Certifications</h2>
+                <a href="/certifications" className="text-sm text-accent hover:underline">View all →</a>
               </div>
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted">Tasks this week</span>
-                  <span className="text-2xl font-bold text-accent">12</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted">Current streak</span>
-                  <span className="text-2xl font-bold text-accent">5 days</span>
-                </div>
-                <div className="pt-4 border-t border-border">
-                  <div className="text-sm text-muted mb-1">Last weekly review</div>
-                  <div className="text-sm">Feb 7, 2026</div>
-                </div>
+                {[
+                  { name: 'MO-210 Excel 365', progress: 60 },
+                  { name: 'AZ-900 Azure Fundamentals', progress: 40 },
+                  { name: 'DP-900 Azure Data Fundamentals', progress: 15 },
+                ].map((cert, i) => (
+                  <div key={i}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-sm font-medium">{cert.name}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium" style={{ color: '#F59E0B' }}>In Progress</span>
+                        <span className="text-sm font-semibold text-accent">{cert.progress}%</span>
+                      </div>
+                    </div>
+                    <div className="w-full bg-background rounded-full h-2">
+                      <div
+                        className="h-2 rounded-full transition-all"
+                        style={{ width: `${cert.progress}%`, backgroundColor: '#0080FF' }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
