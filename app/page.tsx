@@ -190,7 +190,7 @@ export default function Home() {
         <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-border">
           <div>
             <h1 className="text-3xl font-bold">
-              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Mission Control
+              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Dashboard
             </h1>
           </div>
           <div className="flex items-center gap-6 text-sm">

@@ -3,7 +3,7 @@ import "./globals.css";
 import Sidebar from "./components/Sidebar";
 
 export const metadata: Metadata = {
-  title: "Atlas Mission Control",
+  title: "Dashboard",
   description: "Personal mission control dashboard",
 };
 
