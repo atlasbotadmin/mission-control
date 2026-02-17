@@ -196,6 +196,54 @@ export default function Home() {
             {/* Calendar Panel */}
             <MiniCalendar />
 
+            {/* Weekly Breakdown */}
+            <div className="bg-card border border-border rounded-lg p-5">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-medium text-muted uppercase tracking-wider">Weekly Breakdown</h2>
+                <a href="/activity" className="text-xs text-accent hover:underline">View all →</a>
+              </div>
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th className="text-left text-xs text-[#555] pb-3 w-20"></th>
+                    {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => (
+                      <th key={d} className="text-center text-xs text-[#666] pb-3 font-medium">{d}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { name: 'Work', color: '#0080FF', data: [8, 8, 8, 8, 8, 0, 0] },
+                    { name: 'Study', color: '#8B5CF6', data: [1, 0, 1.5, 0, 1, 2, 0] },
+                    { name: 'Fitness', color: '#00d4aa', data: [1.5, 1, 0, 1.5, 1, 0, 1] },
+                  ].map((cat) => (
+                    <tr key={cat.name}>
+                      <td className="py-1.5">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: cat.color }} />
+                          <span className="text-xs text-[#aaa]">{cat.name}</span>
+                        </div>
+                      </td>
+                      {cat.data.map((hrs, i) => (
+                        <td key={i} className="py-1.5 px-0.5">
+                          <div
+                            className="w-full rounded flex items-center justify-center text-[10px] font-medium"
+                            style={{
+                              height: 28,
+                              backgroundColor: hrs > 0 ? `${cat.color}${Math.round((hrs / 8) * 40 + 15).toString(16).padStart(2, '0')}` : '#141414',
+                              color: hrs > 0 ? '#fff' : '#333',
+                            }}
+                          >
+                            {hrs > 0 ? hrs : '–'}
+                          </div>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
           </div>
 
           {/* Right Column */}
