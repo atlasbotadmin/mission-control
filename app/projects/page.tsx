@@ -12,7 +12,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader title="Projects" subtitle="Active projects and goals" />
+      <PageHeader title="Projects" />
       <div className="max-w-7xl mx-auto space-y-6 p-4 md:p-8">
 
         {/* Projects Grid */}

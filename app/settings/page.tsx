@@ -4,7 +4,7 @@ import PageHeader from '../components/PageHeader';
 export default function SettingsPage() {
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader title="Settings" subtitle="Configure your dashboard preferences" />
+      <PageHeader title="Settings" />
       <div className="max-w-4xl mx-auto space-y-6 p-4 md:p-8">
 
         {/* Settings Sections */}

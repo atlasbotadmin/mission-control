@@ -101,7 +101,7 @@ export default function AgentsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader title="Agents" subtitle="AI agents and their capabilities" />
+      <PageHeader title="Agents" />
       <div className="max-w-7xl mx-auto space-y-6 p-4 md:p-8">
 
         {/* Active Agents */}

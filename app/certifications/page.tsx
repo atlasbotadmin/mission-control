@@ -237,7 +237,7 @@ export default function CertificationsPage() {
 
   return (
     <div className="min-h-screen bg-background text-text">
-      <PageHeader title="Certifications" subtitle="Track your professional development" />
+      <PageHeader title="Certifications" />
       <div className="p-8">
 
       {/* Stats Summary */}
