@@ -202,10 +202,16 @@ export default function Home() {
                 <h2 className="text-sm font-medium text-muted uppercase tracking-wider">Weekly Breakdown</h2>
                 <a href="/activity" className="text-xs text-accent hover:underline">View all →</a>
               </div>
-              <table className="w-full">
+              <table className="w-full table-fixed">
+                <colgroup>
+                  <col style={{ width: '72px' }} />
+                  {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => (
+                    <col key={d} />
+                  ))}
+                </colgroup>
                 <thead>
                   <tr>
-                    <th className="text-left text-xs text-[#555] pb-3 w-20"></th>
+                    <th className="text-left text-xs text-[#555] pb-3"></th>
                     {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => (
                       <th key={d} className="text-center text-xs text-[#666] pb-3 font-medium">{d}</th>
                     ))}
