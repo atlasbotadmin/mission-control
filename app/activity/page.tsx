@@ -21,7 +21,9 @@ export default function ActivityPage() {
             <circle cx="12" cy="12" r="9" />
             <polyline points="12 7 12 12 15.5 14" />
           </svg>
-          <h1 className="text-2xl font-semibold text-white">Activity</h1>
+          <h1 className="text-3xl font-bold">
+              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Activity
+            </h1>
         </div>
         <div className="flex items-center gap-3 text-sm">
           <button className="w-8 h-8 rounded-lg bg-[#141414] border border-[#252525] flex items-center justify-center text-[#888] hover:text-white hover:border-[#333] transition-colors">‹</button>

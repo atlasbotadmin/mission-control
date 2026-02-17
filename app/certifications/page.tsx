@@ -244,7 +244,9 @@ export default function CertificationsPage() {
           <path d="M7 7H4a1 1 0 0 0-1 1v1a3 3 0 0 0 3 3h1" />
           <path d="M17 7h3a1 1 0 0 1 1 1v1a3 3 0 0 1-3 3h-1" />
         </svg>
-        <h1 className="text-2xl font-semibold text-white">Certifications</h1>
+        <h1 className="text-3xl font-bold">
+              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Certifications
+            </h1>
       </div>
       <p className="text-[#888] mb-8 ml-[40px]">Track your professional development</p>
 

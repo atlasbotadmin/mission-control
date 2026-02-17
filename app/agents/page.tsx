@@ -104,8 +104,8 @@ export default function AgentsPage() {
         {/* Header */}
         <header className="pb-6 border-b border-border">
           <h1 className="text-3xl font-bold">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0080FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-2 align-middle"><circle cx="12" cy="8" r="4" /><path d="M20 21a8 8 0 1 0-16 0" /></svg> Agents
-          </h1>
+              <span className="text-accent">Atlas</span> <span className="inline-block w-px h-7 bg-white/40 mx-3 align-middle"></span> Agents
+            </h1>
           <p className="text-muted mt-2">AI agents and their capabilities</p>
         </header>
 
