@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="system-ui, -apple-system, sans-serif">
+  <defs>
+    <!-- Card shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    <!-- Arrow marker -->
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0080FF"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4aa"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8B5CF6"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#F59E0B"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#0a0a0a" rx="12"/>
+
+  <!-- Title -->
+  <text x="600" y="45" text-anchor="middle" fill="#ededed" font-size="24" font-weight="700">Atlas System Architecture</text>
+  <text x="600" y="68" text-anchor="middle" fill="#666" font-size="13">OpenClaw Personal AI Infrastructure — February 2026</text>
+
+  <!-- ==================== -->
+  <!-- TAILSCALE MESH (outer boundary) -->
+  <!-- ==================== -->
+  <rect x="30" y="90" width="1140" height="780" rx="16" fill="none" stroke="#0080FF" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.4"/>
+  <rect x="36" y="82" width="180" height="22" rx="4" fill="#0a0a0a"/>
+  <text x="46" y="97" fill="#0080FF" font-size="12" font-weight="600">🔒 TAILSCALE MESH VPN</text>
+
+  <!-- ==================== -->
+  <!-- USER DEVICES (top left) -->
+  <!-- ==================== -->
+  <!-- MacBook -->
+  <rect x="60" y="120" width="200" height="100" rx="10" fill="#141414" stroke="#252525" stroke-width="1" filter="url(#shadow)"/>
+  <text x="160" y="148" text-anchor="middle" fill="#ededed" font-size="14" font-weight="600">💻 MacBook Air</text>
+  <text x="160" y="168" text-anchor="middle" fill="#888" font-size="11">Host Machine</text>
+  <text x="160" y="186" text-anchor="middle" fill="#555" font-size="10">100.121.124.123</text>
+  <text x="160" y="202" text-anchor="middle" fill="#0080FF" font-size="10">atlass-macbook-air.ts.net</text>
+
+  <!-- iPhone -->
+  <rect x="60" y="240" width="200" height="80" rx="10" fill="#141414" stroke="#252525" stroke-width="1" filter="url(#shadow)"/>
+  <text x="160" y="268" text-anchor="middle" fill="#ededed" font-size="14" font-weight="600">📱 iPhone</text>
+  <text x="160" y="288" text-anchor="middle" fill="#888" font-size="11">iMessage + Tailscale</text>
+  <text x="160" y="304" text-anchor="middle" fill="#00d4aa" font-size="10">● Connected</text>
+
+  <!-- ==================== -->
+  <!-- OPENCLAW GATEWAY (center) -->
+  <!-- ==================== -->
+  <rect x="380" y="120" width="300" height="130" rx="12" fill="#141414" stroke="#0080FF" stroke-width="2" filter="url(#shadow)"/>
+  <text x="530" y="150" text-anchor="middle" fill="#0080FF" font-size="16" font-weight="700">⬡ OpenClaw Gateway</text>
+  <text x="530" y="172" text-anchor="middle" fill="#888" font-size="11">127.0.0.1:18789 (loopback)</text>
+  <text x="530" y="192" text-anchor="middle" fill="#666" font-size="10">Tailscale Serve → HTTPS</text>
+  <text x="530" y="212" text-anchor="middle" fill="#555" font-size="10">Auth: Token + Tailscale Identity</text>
+  <text x="530" y="232" text-anchor="middle" fill="#555" font-size="10">Heartbeat: 1h | Context Pruning: 1h TTL</text>
+
+  <!-- ==================== -->
+  <!-- AGENTS (center-left, below gateway) -->
+  <!-- ==================== -->
+  <rect x="80" y="380" width="460" height="260" rx="12" fill="#111" stroke="#252525" stroke-width="1"/>
+  <text x="310" y="408" text-anchor="middle" fill="#ededed" font-size="15" font-weight="600">🤖 Agent Fleet</text>
+
+  <!-- Atlas -->
+  <rect x="100" y="425" width="130" height="65" rx="8" fill="#141414" stroke="#0080FF" stroke-width="1.5"/>
+  <text x="165" y="448" text-anchor="middle" fill="#0080FF" font-size="12" font-weight="600">Atlas</text>
+  <text x="165" y="464" text-anchor="middle" fill="#888" font-size="10">Main · Opus</text>
+  <text x="165" y="478" text-anchor="middle" fill="#00d4aa" font-size="9">● Online</text>
+
+  <!-- Forge -->
+  <rect x="250" y="425" width="130" height="65" rx="8" fill="#141414" stroke="#F59E0B" stroke-width="1"/>
+  <text x="315" y="448" text-anchor="middle" fill="#F59E0B" font-size="12" font-weight="600">Forge</text>
+  <text x="315" y="464" text-anchor="middle" fill="#888" font-size="10">Web Architect · Opus</text>
+  <text x="315" y="478" text-anchor="middle" fill="#F59E0B" font-size="9">● Idle</text>
+
+  <!-- Sage -->
+  <rect x="400" y="425" width="130" height="65" rx="8" fill="#141414" stroke="#F59E0B" stroke-width="1"/>
+  <text x="465" y="448" text-anchor="middle" fill="#F59E0B" font-size="12" font-weight="600">Sage</text>
+  <text x="465" y="464" text-anchor="middle" fill="#888" font-size="10">Research · Opus</text>
+  <text x="465" y="478" text-anchor="middle" fill="#F59E0B" font-size="9">● Idle</text>
+
+  <!-- Voyage -->
+  <rect x="100" y="505" width="130" height="65" rx="8" fill="#141414" stroke="#F59E0B" stroke-width="1"/>
+  <text x="165" y="528" text-anchor="middle" fill="#F59E0B" font-size="12" font-weight="600">Voyage</text>
+  <text x="165" y="544" text-anchor="middle" fill="#888" font-size="10">Travel · Sonnet</text>
+  <text x="165" y="558" text-anchor="middle" fill="#F59E0B" font-size="9">● Idle</text>
+
+  <!-- Harvest -->
+  <rect x="250" y="505" width="130" height="65" rx="8" fill="#141414" stroke="#F59E0B" stroke-width="1"/>
+  <text x="315" y="528" text-anchor="middle" fill="#F59E0B" font-size="12" font-weight="600">Harvest</text>
+  <text x="315" y="544" text-anchor="middle" fill="#888" font-size="10">Meal Prep · Sonnet</text>
+  <text x="315" y="558" text-anchor="middle" fill="#F59E0B" font-size="9">● Idle</text>
+
+  <!-- Anthropic API -->
+  <rect x="400" y="505" width="130" height="65" rx="8" fill="#141414" stroke="#8B5CF6" stroke-width="1.5"/>
+  <text x="465" y="528" text-anchor="middle" fill="#8B5CF6" font-size="12" font-weight="600">Anthropic API</text>
+  <text x="465" y="544" text-anchor="middle" fill="#888" font-size="10">Claude Opus 4.6</text>
+  <text x="465" y="558" text-anchor="middle" fill="#888" font-size="10">Claude Sonnet 4.5</text>
+
+  <!-- ==================== -->
+  <!-- CHANNELS & INTEGRATIONS (right side) -->
+  <!-- ==================== -->
+
+  <!-- iMessage -->
+  <rect x="780" y="120" width="180" height="80" rx="10" fill="#141414" stroke="#00d4aa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="870" y="148" text-anchor="middle" fill="#00d4aa" font-size="14" font-weight="600">💬 iMessage</text>
+  <text x="870" y="168" text-anchor="middle" fill="#888" font-size="10">imsg CLI · DM Pairing</text>
+  <text x="870" y="184" text-anchor="middle" fill="#555" font-size="10">+1 (832) 493-8408</text>
+
+  <!-- Supermemory -->
+  <rect x="780" y="220" width="180" height="80" rx="10" fill="#141414" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="870" y="248" text-anchor="middle" fill="#8B5CF6" font-size="14" font-weight="600">🧠 Supermemory</text>
+  <text x="870" y="268" text-anchor="middle" fill="#888" font-size="10">Long-term Memory</text>
+  <text x="870" y="284" text-anchor="middle" fill="#00d4aa" font-size="10">Pro Plan · Active</text>
+
+  <!-- GitHub -->
+  <rect x="780" y="320" width="180" height="80" rx="10" fill="#141414" stroke="#ededed" stroke-width="1" filter="url(#shadow)"/>
+  <text x="870" y="348" text-anchor="middle" fill="#ededed" font-size="14" font-weight="600">🐙 GitHub</text>
+  <text x="870" y="368" text-anchor="middle" fill="#888" font-size="10">atlasbotadmin</text>
+  <text x="870" y="384" text-anchor="middle" fill="#555" font-size="10">Repos · Code · Push</text>
+
+  <!-- Vercel -->
+  <rect x="780" y="420" width="180" height="80" rx="10" fill="#141414" stroke="#ededed" stroke-width="1" filter="url(#shadow)"/>
+  <text x="870" y="448" text-anchor="middle" fill="#ededed" font-size="14" font-weight="600">▲ Vercel</text>
+  <text x="870" y="468" text-anchor="middle" fill="#888" font-size="10">Deployment Platform</text>
+  <text x="870" y="484" text-anchor="middle" fill="#555" font-size="10">atlas-mission-control.vercel.app</text>
+
+  <!-- Apple Calendar/Reminders -->
+  <rect x="780" y="520" width="180" height="80" rx="10" fill="#141414" stroke="#F59E0B" stroke-width="1" filter="url(#shadow)"/>
+  <text x="870" y="548" text-anchor="middle" fill="#F59E0B" font-size="14" font-weight="600">📅 Apple Calendar</text>
+  <text x="870" y="568" text-anchor="middle" fill="#888" font-size="10">AppleScript · icalBuddy</text>
+  <text x="870" y="584" text-anchor="middle" fill="#888" font-size="10">Reminders · remindctl</text>
+
+  <!-- Brave Search -->
+  <rect x="780" y="620" width="180" height="70" rx="10" fill="#141414" stroke="#555" stroke-width="1" filter="url(#shadow)"/>
+  <text x="870" y="648" text-anchor="middle" fill="#bbb" font-size="14" font-weight="600">🔍 Brave Search</text>
+  <text x="870" y="668" text-anchor="middle" fill="#888" font-size="10">Web Search API</text>
+  <text x="870" y="678" text-anchor="middle" fill="#555" font-size="10">web_search · web_fetch</text>
+
+  <!-- ==================== -->
+  <!-- LOCAL SERVICES (bottom) -->
+  <!-- ==================== -->
+  <rect x="80" y="680" width="460" height="160" rx="12" fill="#111" stroke="#252525" stroke-width="1"/>
+  <text x="310" y="708" text-anchor="middle" fill="#ededed" font-size="15" font-weight="600">🗂️ Local System</text>
+
+  <rect x="100" y="725" width="130" height="50" rx="8" fill="#141414" stroke="#333" stroke-width="1"/>
+  <text x="165" y="748" text-anchor="middle" fill="#bbb" font-size="11" font-weight="500">Workspace</text>
+  <text x="165" y="763" text-anchor="middle" fill="#555" font-size="9">~/.openclaw/workspace</text>
+
+  <rect x="250" y="725" width="130" height="50" rx="8" fill="#141414" stroke="#333" stroke-width="1"/>
+  <text x="315" y="748" text-anchor="middle" fill="#bbb" font-size="11" font-weight="500">Backups</text>
+  <text x="315" y="763" text-anchor="middle" fill="#555" font-size="9">Snapshot · tar.gz</text>
+
+  <rect x="400" y="725" width="130" height="50" rx="8" fill="#141414" stroke="#333" stroke-width="1"/>
+  <text x="465" y="748" text-anchor="middle" fill="#bbb" font-size="11" font-weight="500">Cron Jobs</text>
+  <text x="465" y="763" text-anchor="middle" fill="#555" font-size="9">Morning Briefing 4:15a</text>
+
+  <rect x="100" y="790" width="280" height="35" rx="6" fill="#141414" stroke="#333" stroke-width="1"/>
+  <text x="240" y="812" text-anchor="middle" fill="#888" font-size="10">CLI Tools: imsg · icalBuddy · remindctl · git · vercel</text>
+
+  <!-- ==================== -->
+  <!-- CONNECTIONS -->
+  <!-- ==================== -->
+
+  <!-- MacBook → Gateway -->
+  <line x1="260" y1="170" x2="380" y2="170" stroke="#0080FF" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+
+  <!-- iPhone → Gateway (via Tailscale) -->
+  <path d="M 260 280 Q 340 280 380 200" fill="none" stroke="#0080FF" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow-blue)"/>
+  <text x="320" y="260" fill="#0080FF" font-size="9" text-anchor="middle">Tailscale</text>
+
+  <!-- iPhone → iMessage -->
+  <path d="M 260 265 Q 600 100 780 155" fill="none" stroke="#00d4aa" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+  <text x="500" y="108" fill="#00d4aa" font-size="9" text-anchor="middle">iMessage</text>
+
+  <!-- Gateway → iMessage -->
+  <line x1="680" y1="155" x2="780" y2="155" stroke="#00d4aa" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Gateway → Supermemory -->
+  <line x1="680" y1="185" x2="780" y2="255" stroke="#8B5CF6" stroke-width="1.2" marker-end="url(#arrow-purple)"/>
+
+  <!-- Gateway → Agents -->
+  <line x1="530" y1="250" x2="530" y2="380" stroke="#0080FF" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <text x="542" y="320" fill="#0080FF" font-size="9">Orchestration</text>
+
+  <!-- Gateway → Apple Cal -->
+  <path d="M 680 210 Q 740 400 780 555" fill="none" stroke="#F59E0B" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+
+  <!-- Agents → GitHub -->
+  <path d="M 540 510 Q 700 420 780 360" fill="none" stroke="#888" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="660" y="440" fill="#888" font-size="9">Push</text>
+
+  <!-- GitHub → Vercel -->
+  <line x1="870" y1="400" x2="870" y2="420" stroke="#888" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="885" y="413" fill="#888" font-size="9">Deploy</text>
+
+  <!-- Agents → Brave Search -->
+  <path d="M 540 570 Q 700 630 780 650" fill="none" stroke="#555" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Gateway → Local System -->
+  <path d="M 430 250 Q 350 500 310 680" fill="none" stroke="#555" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="340" y="470" fill="#555" font-size="9">Read/Write</text>
+
+  <!-- ==================== -->
+  <!-- LEGEND -->
+  <!-- ==================== -->
+  <rect x="600" y="700" width="340" height="140" rx="10" fill="#111" stroke="#252525" stroke-width="1"/>
+  <text x="770" y="725" text-anchor="middle" fill="#888" font-size="12" font-weight="600">Legend</text>
+
+  <line x1="620" y1="745" x2="660" y2="745" stroke="#0080FF" stroke-width="2"/>
+  <text x="670" y="749" fill="#888" font-size="10">Core / Gateway</text>
+
+  <line x1="620" y1="765" x2="660" y2="765" stroke="#00d4aa" stroke-width="2"/>
+  <text x="670" y="769" fill="#888" font-size="10">Messaging</text>
+
+  <line x1="620" y1="785" x2="660" y2="785" stroke="#8B5CF6" stroke-width="2"/>
+  <text x="670" y="789" fill="#888" font-size="10">Memory / AI</text>
+
+  <line x1="620" y1="805" x2="660" y2="805" stroke="#F59E0B" stroke-width="2"/>
+  <text x="670" y="809" fill="#888" font-size="10">Calendar / Scheduling</text>
+
+  <line x1="790" y1="745" x2="830" y2="745" stroke="#0080FF" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="840" y="749" fill="#888" font-size="10">Tailscale Encrypted</text>
+
+  <line x1="790" y1="765" x2="830" y2="765" stroke="#888" stroke-width="1.5"/>
+  <text x="840" y="769" fill="#888" font-size="10">Integration</text>
+
+  <circle cx="800" cy="788" r="4" fill="#00d4aa"/>
+  <text x="840" y="792" fill="#888" font-size="10">Online</text>
+
+  <circle cx="800" cy="808" r="4" fill="#F59E0B"/>
+  <text x="840" y="812" fill="#888" font-size="10">Idle</text>
+</svg>
