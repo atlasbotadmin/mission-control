@@ -1,4 +1,5 @@
 'use client';
+import PageHeader from '../components/PageHeader';
 
 export default function StatsPage() {
   const weeklyStats = [
@@ -21,15 +22,9 @@ export default function StatsPage() {
   const maxTasks = Math.max(...weeklyStats.map(s => s.tasks));
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <header className="pb-6 border-b border-border">
-          <h1 className="text-3xl font-bold">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0080FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-2 align-middle"><path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20v-6" /></svg> Stats
-          </h1>
-          <p className="text-muted mt-2">Productivity insights and analytics</p>
-        </header>
+    <div className="min-h-screen bg-background">
+      <PageHeader title="Stats" />
+      <div className="max-w-7xl mx-auto space-y-6 p-4 md:p-8">
 
         {/* Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
