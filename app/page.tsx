@@ -208,6 +208,59 @@ export default function Home() {
             {/* Calendar Panel */}
             <MiniCalendar />
 
+            {/* Agents Panel */}
+            <div className="bg-card border border-border rounded-lg p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold">Agents</h2>
+                <a href="/agents" className="text-sm text-accent hover:underline">View all →</a>
+              </div>
+              <div className="space-y-3">
+                {agents.map((agent, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 border border-border rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-2 h-2 rounded-full ${
+                          agent.status === 'online' ? 'bg-status' : 'bg-idle'
+                        }`}
+                      ></div>
+                      <div>
+                        <div className="font-medium text-sm">{agent.name}</div>
+                        <div className="text-xs text-muted">{agent.role}</div>
+                      </div>
+                    </div>
+                    <div className="text-xs text-muted">{agent.model}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-6">
+            {/* Weather Widget */}
+            <div className="bg-card border border-border rounded-lg p-5">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-4xl font-light tracking-tight">62°F</div>
+                  <div className="text-sm mt-1">Partly Cloudy</div>
+                  <div className="text-xs text-muted mt-0.5">Houston, TX</div>
+                </div>
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-accent">
+                  <circle cx="20" cy="24" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M20 13v-3M20 38v-3M9 24H6M34 24h-3M12.3 16.3l-2.1-2.1M29.8 33.8l-2.1-2.1M27.7 16.3l2.1-2.1M10.2 33.8l2.1-2.1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M28 28a8 8 0 0 1 8-8 6 6 0 0 1 6 6c0 3.3-2.7 6-6 6H26" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <div className="flex items-center gap-4 mt-3 pt-3 border-t border-border text-xs text-muted">
+                <span>H: 69° L: 57°</span>
+                <span>·</span>
+                <span>85% humidity</span>
+                <span>·</span>
+                <span>12 mph N</span>
+              </div>
+            </div>
+
             {/* Headlines */}
             <div className="bg-card border border-border rounded-lg p-8">
               <div className="flex items-center gap-3 mb-5">
@@ -243,59 +296,6 @@ export default function Home() {
               </div>
               <div className="mt-4 pt-4 border-t border-border">
                 <span className="text-xs text-muted">Updated 4:15 AM</span>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Right Column */}
-          <div className="space-y-6">
-            {/* Weather Widget */}
-            <div className="bg-card border border-border rounded-lg p-5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-4xl font-light tracking-tight">62°F</div>
-                  <div className="text-sm mt-1">Partly Cloudy</div>
-                  <div className="text-xs text-muted mt-0.5">Houston, TX</div>
-                </div>
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-accent">
-                  <circle cx="20" cy="24" r="7" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M20 13v-3M20 38v-3M9 24H6M34 24h-3M12.3 16.3l-2.1-2.1M29.8 33.8l-2.1-2.1M27.7 16.3l2.1-2.1M10.2 33.8l2.1-2.1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M28 28a8 8 0 0 1 8-8 6 6 0 0 1 6 6c0 3.3-2.7 6-6 6H26" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <div className="flex items-center gap-4 mt-3 pt-3 border-t border-border text-xs text-muted">
-                <span>H: 69° L: 57°</span>
-                <span>·</span>
-                <span>85% humidity</span>
-                <span>·</span>
-                <span>12 mph N</span>
-              </div>
-            </div>
-
-            {/* Agents Panel */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold">Agents</h2>
-                <a href="/agents" className="text-sm text-accent hover:underline">View all →</a>
-              </div>
-              <div className="space-y-3">
-                {agents.map((agent, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 border border-border rounded-lg">
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-2 h-2 rounded-full ${
-                          agent.status === 'online' ? 'bg-status' : 'bg-idle'
-                        }`}
-                      ></div>
-                      <div>
-                        <div className="font-medium text-sm">{agent.name}</div>
-                        <div className="text-xs text-muted">{agent.role}</div>
-                      </div>
-                    </div>
-                    <div className="text-xs text-muted">{agent.model}</div>
-                  </div>
-                ))}
               </div>
             </div>
 
