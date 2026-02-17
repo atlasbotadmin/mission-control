@@ -176,24 +176,11 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const projects = [
-    { name: 'EA Launch', target: 'Feb 17, 2026', progress: 85 },
-    { name: 'Wedding Planning', target: 'Sep 2026', progress: 30 },
-    { name: 'MO-210 Excel Certification', target: null, progress: 60 },
-  ];
-
   const agents = [
     { name: 'Atlas', role: 'Main', model: 'Opus', status: 'online' },
     { name: 'Voyage', role: 'Travel', model: 'Sonnet', status: 'idle' },
     { name: 'Harvest', role: 'Meal Prep', model: 'Sonnet', status: 'idle' },
     { name: 'Sage', role: 'Research', model: 'Opus', status: 'idle' },
-  ];
-
-  const activityFeed = [
-    'Completed "Update budget spreadsheet"',
-    'Started AZ-900 Module 3',
-    'Archived 5 completed tasks',
-    'Updated wedding guest list',
   ];
 
   return (
@@ -252,34 +239,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Projects Summary */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold">Projects</h2>
-                <a href="/projects" className="text-sm text-accent hover:underline">View all →</a>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {projects.map((project, i) => (
-                  <div key={i} className="border border-border rounded-lg p-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="font-medium text-sm">{project.name}</h3>
-                        {project.target && (
-                          <p className="text-xs text-muted mt-1">{project.target}</p>
-                        )}
-                      </div>
-                      <span className="text-lg font-semibold text-accent">{project.progress}%</span>
-                    </div>
-                    <div className="w-full bg-background rounded-full h-2">
-                      <div
-                        className="bg-accent h-2 rounded-full transition-all"
-                        style={{ width: `${project.progress}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Right Column */}
@@ -364,18 +323,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Activity Feed */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
-              <div className="space-y-3">
-                {activityFeed.map((activity, i) => (
-                  <div key={i} className="text-sm text-muted flex items-start gap-2">
-                    <span className="text-accent">•</span>
-                    <span>{activity}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
