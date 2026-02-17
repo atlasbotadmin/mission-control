@@ -224,11 +224,11 @@ export default function Home() {
                     { name: 'Fitness', color: '#00d4aa', data: [1.5, 1, 0, 1.5, 1, 0, 1] },
                   ].map((cat) => (
                     <tr key={cat.name}>
-                      <td className="py-1.5 pr-3 border-r border-[#333]">
+                      <td className="py-1.5 pr-1 border-r border-[#333]">
                         <span className="text-xs font-medium" style={{ color: cat.color }}>{cat.name}</span>
                       </td>
                       {cat.data.map((hrs, i) => (
-                        <td key={i} className="py-1.5 px-0.5">
+                        <td key={i} className={`py-1.5 px-0.5 ${i === 0 ? 'pl-2' : ''}`}>
                           <div
                             className="w-full rounded flex items-center justify-center text-[10px] font-medium"
                             style={{
