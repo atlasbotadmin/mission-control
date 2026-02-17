@@ -225,10 +225,7 @@ export default function Home() {
                   ].map((cat) => (
                     <tr key={cat.name}>
                       <td className="py-1.5">
-                        <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: cat.color }} />
-                          <span className="text-xs text-[#aaa]">{cat.name}</span>
-                        </div>
+                        <span className="text-xs font-medium" style={{ color: cat.color }}>{cat.name}</span>
                       </td>
                       {cat.data.map((hrs, i) => (
                         <td key={i} className="py-1.5 px-0.5">
