@@ -224,7 +224,7 @@ export default function Home() {
                     { name: 'Fitness', color: '#00d4aa', data: [1.5, 1, 0, 1.5, 1, 0, 1] },
                   ].map((cat) => (
                     <tr key={cat.name}>
-                      <td className="py-1.5 pr-2 border-r border-[#333]">
+                      <td className="py-1.5 pr-2 border-r border-[#333] align-middle text-center">
                         <span className="text-xs font-medium" style={{ color: cat.color }}>{cat.name}</span>
                       </td>
                       {cat.data.map((hrs, i) => (
