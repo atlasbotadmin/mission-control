@@ -222,15 +222,22 @@ export default function Home() {
               </div>
               <div className="space-y-0">
                 {[
-                  { emoji: '🚢', text: 'Hapag-Lloyd in advanced talks to acquire Zim' },
-                  { emoji: '🧠', text: 'Anthropic hits $380B valuation amid Pentagon AI dispute' },
-                  { emoji: '💻', text: 'SpaceX eyes dual-class share structure ahead of IPO' },
-                  { emoji: '🌍', text: '250K rally in Munich for Iran regime change' },
-                  { emoji: '📈', text: 'Container shipping rates pressured by Red Sea reopening' },
+                  { emoji: '🚢', text: 'Hapag-Lloyd in advanced talks to acquire Zim', url: 'https://www.reuters.com' },
+                  { emoji: '🧠', text: 'Anthropic hits $380B valuation amid Pentagon AI dispute', url: 'https://www.bloomberg.com' },
+                  { emoji: '💻', text: 'SpaceX eyes dual-class share structure ahead of IPO', url: 'https://www.cnbc.com' },
+                  { emoji: '🌍', text: '250K rally in Munich for Iran regime change', url: 'https://www.bbc.com' },
+                  { emoji: '📈', text: 'Container shipping rates pressured by Red Sea reopening', url: 'https://www.ft.com' },
                 ].map((item, i) => (
-                  <div key={i} className={`flex items-start gap-4 py-4 ${i > 0 ? 'border-t border-border/50' : ''}`}>
+                  <div key={i} className={`flex items-center gap-4 py-4 ${i > 0 ? 'border-t border-border/50' : ''}`}>
                     <span className="text-xl shrink-0">{item.emoji}</span>
-                    <span className="text-base text-[#ddd]">{item.text}</span>
+                    <span className="text-base text-[#ddd] flex-1">{item.text}</span>
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="shrink-0 text-[#555] hover:text-[#0080FF] transition-colors">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
                   </div>
                 ))}
               </div>
