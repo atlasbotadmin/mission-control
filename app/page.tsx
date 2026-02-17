@@ -177,13 +177,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const agents = [
-    { name: 'Atlas', role: 'Main', model: 'Opus', status: 'online' },
-    { name: 'Voyage', role: 'Travel', model: 'Sonnet', status: 'idle' },
-    { name: 'Harvest', role: 'Meal Prep', model: 'Sonnet', status: 'idle' },
-    { name: 'Sage', role: 'Research', model: 'Opus', status: 'idle' },
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <PageHeader title="Dashboard" right={
@@ -202,32 +195,6 @@ export default function Home() {
           <div className="lg:col-span-2 space-y-6">
             {/* Calendar Panel */}
             <MiniCalendar />
-
-            {/* Agents Panel */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold">Agents</h2>
-                <a href="/agents" className="text-sm text-accent hover:underline">View all →</a>
-              </div>
-              <div className="space-y-3">
-                {agents.map((agent, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 border border-border rounded-lg">
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-2 h-2 rounded-full ${
-                          agent.status === 'online' ? 'bg-status' : 'bg-idle'
-                        }`}
-                      ></div>
-                      <div>
-                        <div className="font-medium text-sm">{agent.name}</div>
-                        <div className="text-xs text-muted">{agent.role}</div>
-                      </div>
-                    </div>
-                    <div className="text-xs text-muted">{agent.model}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
           </div>
 
@@ -253,44 +220,6 @@ export default function Home() {
                 <span>85% humidity</span>
                 <span>·</span>
                 <span>12 mph N</span>
-              </div>
-            </div>
-
-            {/* Headlines */}
-            <div className="bg-card border border-border rounded-lg p-8">
-              <div className="flex items-center gap-3 mb-5">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
-                  <circle cx="12" cy="12" r="2"/>
-                  <path d="M16.24 7.76a6 6 0 0 1 0 8.49"/>
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                  <path d="M7.76 16.24a6 6 0 0 1 0-8.49"/>
-                  <path d="M4.93 19.07a10 10 0 0 1 0-14.14"/>
-                </svg>
-                <h2 className="text-xl font-semibold">Headlines</h2>
-              </div>
-              <div className="space-y-0">
-                {[
-                  { emoji: '🚢', text: 'Hapag-Lloyd in advanced talks to acquire Zim', url: 'https://www.reuters.com' },
-                  { emoji: '🧠', text: 'Anthropic hits $380B valuation amid Pentagon AI dispute', url: 'https://www.bloomberg.com' },
-                  { emoji: '💻', text: 'SpaceX eyes dual-class share structure ahead of IPO', url: 'https://www.cnbc.com' },
-                  { emoji: '🌍', text: '250K rally in Munich for Iran regime change', url: 'https://www.bbc.com' },
-                  { emoji: '📈', text: 'Container shipping rates pressured by Red Sea reopening', url: 'https://www.ft.com' },
-                ].map((item, i) => (
-                  <div key={i} className={`flex items-center gap-4 py-4 ${i > 0 ? 'border-t border-border/50' : ''}`}>
-                    <span className="text-xl shrink-0">{item.emoji}</span>
-                    <span className="text-base text-[#ddd] flex-1">{item.text}</span>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="shrink-0 text-[#555] hover:text-[#0080FF] transition-colors">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                      </svg>
-                    </a>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 pt-4 border-t border-border">
-                <span className="text-xs text-muted">Updated 4:15 AM</span>
               </div>
             </div>
 
