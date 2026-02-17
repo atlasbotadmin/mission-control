@@ -199,7 +199,7 @@ export default function Home() {
             {/* Weekly Breakdown */}
             <div className="bg-card border border-border rounded-lg p-5">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-medium text-muted uppercase tracking-wider">Weekly Breakdown</h2>
+                <h2 className="text-sm font-medium text-[#ccc] uppercase tracking-wider">Weekly Breakdown</h2>
                 <a href="/activity" className="text-xs text-accent hover:underline">View all →</a>
               </div>
               <table className="w-full table-fixed">
@@ -213,7 +213,7 @@ export default function Home() {
                   <tr>
                     <th className="text-left text-xs text-[#555] pb-3"></th>
                     {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => (
-                      <th key={d} className="text-center text-xs text-[#666] pb-3 font-medium">{d}</th>
+                      <th key={d} className="text-center text-xs text-[#bbb] pb-3 font-medium">{d}</th>
                     ))}
                   </tr>
                 </thead>
