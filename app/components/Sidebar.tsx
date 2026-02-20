@@ -77,19 +77,20 @@ const Sidebar = () => {
     <aside className="fixed left-0 top-0 h-screen w-16 bg-[#080808] border-r border-[#1a1a1a] flex flex-col items-center py-4 z-50">
       {/* Logo — Waypoint Compass */}
       <Link href="/" className="mb-6 group" title="Dashboard">
-        <svg width="40" height="40" viewBox="0 0 34 34" fill="none" className="transition-transform duration-200 group-hover:scale-110">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" className="transition-transform duration-200 group-hover:scale-110">
           {/* Radial gradient backdrop */}
           <defs>
             <radialGradient id="logoBg" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor={pathname === '/' ? '#0080FF' : '#555'} stopOpacity="0.12"/>
-              <stop offset="100%" stopColor={pathname === '/' ? '#0080FF' : '#555'} stopOpacity="0"/>
+              <stop offset="0%" stopColor={pathname === '/' ? '#1a9fff' : '#555'} stopOpacity="0.18"/>
+              <stop offset="80%" stopColor={pathname === '/' ? '#1a9fff' : '#555'} stopOpacity="0.06"/>
+              <stop offset="100%" stopColor={pathname === '/' ? '#1a9fff' : '#555'} stopOpacity="0"/>
             </radialGradient>
           </defs>
-          <rect x="1" y="1" width="32" height="32" rx="8" fill="url(#logoBg)" className="transition-all duration-200"/>
-          <rect x="1" y="1" width="32" height="32" rx="8" stroke={pathname === '/' ? '#0080FF' : '#333'} strokeWidth="0.6" fill="none" opacity="0.2" className="transition-colors duration-200"/>
+          <rect x="1" y="1" width="42" height="42" rx="10" fill="url(#logoBg)" className="transition-all duration-200"/>
+          <rect x="1" y="1" width="42" height="42" rx="10" stroke={pathname === '/' ? '#1a9fff' : '#333'} strokeWidth="0.6" fill="none" opacity="0.25" className="transition-colors duration-200"/>
           {/* Main compass needle / arrow up */}
           <path
-            d="M17 3L12 20L17 17L22 20Z"
+            d="M22 8L17 25L22 22L27 25Z"
             fill={pathname === '/' ? '#0080FF' : '#555'}
             opacity="0.45"
             stroke={pathname === '/' ? '#0080FF' : '#555'}
@@ -98,23 +99,23 @@ const Sidebar = () => {
           />
           {/* Light refraction faces */}
           <polygon
-            points="17,3 22,20 17,17"
+            points="22,8 27,25 22,22"
             fill={pathname === '/' ? '#0080FF' : '#555'}
             opacity="0.3"
             className="transition-colors duration-200"
           />
           <polygon
-            points="17,3 12,20 17,17"
+            points="22,8 17,25 22,22"
             fill={pathname === '/' ? '#0080FF' : '#555'}
             opacity="0.5"
             className="transition-colors duration-200"
           />
           {/* South indicator */}
-          <line x1="17" y1="20" x2="17" y2="28" stroke={pathname === '/' ? '#0080FF' : '#555'} strokeWidth="1" opacity="0.25" className="transition-colors duration-200"/>
-          <circle cx="17" cy="29" r="1" fill={pathname === '/' ? '#0080FF' : '#555'} opacity="0.25" className="transition-colors duration-200"/>
+          <line x1="22" y1="25" x2="22" y2="33" stroke={pathname === '/' ? '#0080FF' : '#555'} strokeWidth="1" opacity="0.25" className="transition-colors duration-200"/>
+          <circle cx="22" cy="34" r="1" fill={pathname === '/' ? '#0080FF' : '#555'} opacity="0.25" className="transition-colors duration-200"/>
           {/* Orbiting dot */}
           <circle r="1.2" fill="#00CCFF" opacity="0.8">
-            <animateMotion dur="4s" repeatCount="indefinite" path="M17,17 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+            <animateMotion dur="4s" repeatCount="indefinite" path="M22,22 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
             <animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite"/>
           </circle>
         </svg>
