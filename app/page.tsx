@@ -316,6 +316,47 @@ export default function Home() {
               </div>
             </motion.div>
 
+            {/* Doing Tasks */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.38 }}
+              className="bg-card border border-border rounded-lg p-5"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-sm font-medium text-[#ccc] uppercase tracking-wider">Doing</h2>
+                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-accent/20 text-accent">2</span>
+                </div>
+                <a href="/tasks" className="text-xs text-accent hover:underline">View all →</a>
+              </div>
+              {(() => {
+                const doingTasks = [
+                  { name: 'Mission Control UI Upgrade', category: 'Atlas', color: '#A855F7' },
+                  { name: 'MO-210 Study: Formulas & Functions', category: 'Work', color: '#0080FF' },
+                ];
+                return doingTasks.length > 0 ? (
+                  <div className="space-y-2">
+                    {doingTasks.map((task, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.44 + i * 0.08 }}
+                        className="flex items-center gap-3 py-2 px-3 rounded-md bg-background/50"
+                      >
+                        <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: task.color }} />
+                        <span className="text-sm flex-1">{task.name}</span>
+                        <span className="text-xs text-muted">{task.category}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted">All clear — nothing in progress</p>
+                );
+              })()}
+            </motion.div>
+
             {/* Certifications */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
