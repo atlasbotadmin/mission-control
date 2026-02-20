@@ -44,8 +44,10 @@ const icons: Record<string, (color: string) => ReactNode> = {
   ),
   activity: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="9" />
-      <polyline points="12 7 12 12 15.5 14" />
+      <path d="M5 4h14" />
+      <path d="M5 20h14" />
+      <path d="M7 4v2a5 5 0 0 0 5 5 5 5 0 0 0 5-5V4" />
+      <path d="M7 20v-2a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2" />
     </svg>
   ),
   settings: (color) => (
