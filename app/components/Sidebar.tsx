@@ -60,7 +60,6 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/', icon: 'dashboard', label: 'Dashboard' },
     { href: '/agents', icon: 'agents', label: 'Agents' },
     { href: '/projects', icon: 'projects', label: 'Projects' },
     { href: '/certifications', icon: 'certifications', label: 'Certifications' },
@@ -76,28 +75,29 @@ const Sidebar = () => {
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-16 bg-[#080808] border-r border-[#1a1a1a] flex flex-col items-center py-4 z-50">
-      {/* Logo */}
-      <div className="mb-6">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-          {/* Hexagon monogram */}
+      {/* Logo — links to Dashboard */}
+      <Link href="/" className="mb-6 group" title="Dashboard">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" className="transition-transform duration-200 group-hover:scale-110">
           <polygon
             points="17,2 29.5,9.25 29.5,24.75 17,32 4.5,24.75 4.5,9.25"
-            stroke="#0080FF"
+            stroke={pathname === '/' ? '#0080FF' : '#555'}
             strokeWidth="1.8"
             fill="none"
+            className="transition-colors duration-200"
           />
           <text
             x="17"
             y="22.5"
             textAnchor="middle"
-            fill="#0080FF"
+            fill={pathname === '/' ? '#0080FF' : '#555'}
             fontSize="18"
             fontFamily="system-ui, -apple-system, sans-serif"
             fontWeight="600"
             letterSpacing="-0.5"
+            className="transition-colors duration-200"
           >A</text>
         </svg>
-      </div>
+      </Link>
 
       {/* Main Navigation */}
       <nav className="flex flex-col gap-2">
