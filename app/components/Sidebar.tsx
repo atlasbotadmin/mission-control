@@ -78,11 +78,13 @@ const Sidebar = () => {
       {/* Logo — Waypoint Compass */}
       <Link href="/" className="mb-6 group" title="Dashboard">
         <svg width="40" height="40" viewBox="0 0 34 34" fill="none" className="transition-transform duration-200 group-hover:scale-110">
+          {/* Bezel circle */}
+          <circle cx="17" cy="17" r="15.5" stroke={pathname === '/' ? '#0080FF' : '#444'} strokeWidth="0.8" fill="none" opacity="0.3" className="transition-colors duration-200"/>
           {/* Main compass needle / arrow up */}
           <path
             d="M17 3L12 20L17 17L22 20Z"
             fill={pathname === '/' ? '#0080FF' : '#555'}
-            opacity="0.25"
+            opacity="0.45"
             stroke={pathname === '/' ? '#0080FF' : '#555'}
             strokeWidth="1"
             className="transition-colors duration-200"
@@ -91,18 +93,18 @@ const Sidebar = () => {
           <polygon
             points="17,3 22,20 17,17"
             fill={pathname === '/' ? '#0080FF' : '#555'}
-            opacity="0.15"
+            opacity="0.3"
             className="transition-colors duration-200"
           />
           <polygon
             points="17,3 12,20 17,17"
             fill={pathname === '/' ? '#0080FF' : '#555'}
-            opacity="0.3"
+            opacity="0.5"
             className="transition-colors duration-200"
           />
           {/* South indicator */}
-          <line x1="17" y1="20" x2="17" y2="28" stroke={pathname === '/' ? '#0080FF' : '#555'} strokeWidth="1" opacity="0.2" className="transition-colors duration-200"/>
-          <circle cx="17" cy="29" r="1" fill={pathname === '/' ? '#0080FF' : '#555'} opacity="0.2" className="transition-colors duration-200"/>
+          <line x1="17" y1="20" x2="17" y2="28" stroke={pathname === '/' ? '#0080FF' : '#555'} strokeWidth="1" opacity="0.25" className="transition-colors duration-200"/>
+          <circle cx="17" cy="29" r="1" fill={pathname === '/' ? '#0080FF' : '#555'} opacity="0.25" className="transition-colors duration-200"/>
           {/* Orbiting dot */}
           <circle r="1.2" fill="#00CCFF" opacity="0.8">
             <animateMotion dur="4s" repeatCount="indefinite" path="M17,17 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
