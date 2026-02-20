@@ -64,7 +64,6 @@ export default function ProjectsPage() {
   function handleDragStart(e: DragEvent, task: Task, sourceCol: ColumnId) {
     setDraggedTask({ task, sourceCol });
     e.dataTransfer.effectAllowed = 'move';
-    // Needed for Firefox
     e.dataTransfer.setData('text/plain', task.id);
   }
 
@@ -78,7 +77,6 @@ export default function ProjectsPage() {
   }
 
   function handleDragLeave(e: DragEvent, colId: ColumnId) {
-    // Only clear if actually leaving the column
     const relatedTarget = e.relatedTarget as HTMLElement | null;
     const currentTarget = e.currentTarget as HTMLElement;
     if (!relatedTarget || !currentTarget.contains(relatedTarget)) {
@@ -97,9 +95,7 @@ export default function ProjectsPage() {
 
     setColumns(prev => {
       const newCols = { ...prev };
-      // Remove from source
       newCols[sourceCol] = prev[sourceCol].filter(t => t.id !== task.id);
-      // Insert into target at the right position
       const targetList = [...newCols[targetCol]];
       const insertAt = dragOverIndex !== null ? dragOverIndex : targetList.length;
       targetList.splice(insertAt, 0, task);
@@ -118,7 +114,6 @@ export default function ProjectsPage() {
     setDragOverIndex(null);
   }
 
-  const totalTasks = Object.values(columns).reduce((s, c) => s + c.length, 0);
   const doneCount = columns.done.length;
 
   return (
@@ -169,7 +164,7 @@ export default function ProjectsPage() {
                 onDrop={(e) => handleDrop(e, col.id)}
               >
                 {/* Column Header */}
-                <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+                <div className="flex items-center px-4 py-3 border-b border-border">
                   <div className="flex items-center gap-2">
                     <div
                       className="w-2.5 h-2.5 rounded-full"
@@ -182,9 +177,6 @@ export default function ProjectsPage() {
                       {col.title}
                     </h2>
                   </div>
-                  <span className="text-xs text-muted bg-background/50 px-2 py-0.5 rounded-full">
-                    {tasks.length}
-                  </span>
                 </div>
 
                 {/* Cards */}
@@ -236,7 +228,7 @@ export default function ProjectsPage() {
                     ))}
                   </AnimatePresence>
 
-                  {/* Drop zone indicator when column is empty or at bottom */}
+                  {/* Drop zone indicator when column is empty */}
                   {isOver && tasks.length === 0 && (
                     <div
                       className="border-2 border-dashed rounded-lg h-20 flex items-center justify-center transition-colors"

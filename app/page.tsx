@@ -174,6 +174,94 @@ function MiniCalendar() {
   );
 }
 
+// Token Costs grouped bar chart data
+const TOKEN_COST_DATA = [
+  { day: 'Feb 14', estimated: 5.00, actual: 3.20 },
+  { day: 'Feb 15', estimated: 5.00, actual: 4.80 },
+  { day: 'Feb 16', estimated: 5.00, actual: 2.10 },
+  { day: 'Feb 17', estimated: 5.00, actual: 5.30 },
+  { day: 'Feb 18', estimated: 5.00, actual: 3.70 },
+  { day: 'Feb 19', estimated: 5.00, actual: 6.10 },
+  { day: 'Feb 20', estimated: 5.00, actual: 2.90 },
+];
+
+function TokenCostsWidget() {
+  const totalEst = TOKEN_COST_DATA.reduce((s, d) => s + d.estimated, 0);
+  const totalAct = TOKEN_COST_DATA.reduce((s, d) => s + d.actual, 0);
+  const savings = totalEst - totalAct;
+  const savingsPct = Math.round((savings / totalEst) * 100);
+  const maxVal = Math.max(...TOKEN_COST_DATA.flatMap(d => [d.estimated, d.actual]));
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.42 }}
+      className="bg-card border border-border rounded-lg p-5"
+    >
+      <h2 className="text-sm font-medium text-[#ccc] uppercase tracking-wider mb-5">Token Costs</h2>
+
+      {/* Grouped Bar Chart */}
+      <div className="relative">
+        {/* Gridlines */}
+        <div className="absolute inset-0 flex flex-col justify-between pointer-events-none" style={{ paddingBottom: 28 }}>
+          {[0, 1, 2, 3].map(i => (
+            <div key={i} className="border-t border-[#1a1a1a] w-full" />
+          ))}
+        </div>
+
+        {/* Bars */}
+        <div className="flex items-end gap-3 relative" style={{ height: 160 }}>
+          {TOKEN_COST_DATA.map((d, i) => (
+            <div key={i} className="flex-1 flex flex-col items-center gap-1">
+              <div className="flex items-end gap-1 w-full justify-center" style={{ height: 128 }}>
+                {/* Estimated bar */}
+                <motion.div
+                  className="flex-1 max-w-[14px] rounded-t-sm"
+                  style={{ backgroundColor: 'rgba(136,136,136,0.3)' }}
+                  initial={{ height: 0 }}
+                  animate={{ height: `${(d.estimated / maxVal) * 100}%` }}
+                  transition={{ duration: 0.6, delay: 0.5 + i * 0.06 }}
+                />
+                {/* Actual bar */}
+                <motion.div
+                  className="flex-1 max-w-[14px] rounded-t-sm bg-[#0080FF]"
+                  initial={{ height: 0 }}
+                  animate={{ height: `${(d.actual / maxVal) * 100}%` }}
+                  transition={{ duration: 0.6, delay: 0.6 + i * 0.06 }}
+                />
+              </div>
+              <span className="text-[9px] text-[#555] mt-1 whitespace-nowrap">{d.day}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Summary Row */}
+      <div className="flex items-center justify-between mt-4 pt-3 border-t border-border">
+        <div className="flex items-center gap-4 text-xs">
+          <div className="flex items-center gap-1.5">
+            <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(136,136,136,0.3)' }} />
+            <span className="text-muted">Estimated: <span className="text-[#aaa]">${totalEst.toFixed(2)}</span></span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-3 h-2 rounded-sm bg-[#0080FF]" />
+            <span className="text-muted">Actual: <span className="text-[#aaa]">${totalAct.toFixed(2)}</span></span>
+          </div>
+        </div>
+        <motion.span
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1 }}
+          className="text-xs font-bold px-2 py-0.5 rounded-full bg-[#00d4aa]/15 text-[#00d4aa]"
+        >
+          ${savings.toFixed(2)} saved ({savingsPct}%)
+        </motion.span>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Home() {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
@@ -298,111 +386,8 @@ export default function Home() {
               })()}
             </motion.div>
 
-            {/* Cost Efficiency */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.42 }}
-              className="bg-card border border-border rounded-lg p-5"
-            >
-              {(() => {
-                const estimated = [5, 5, 5, 5, 5, 5, 5];
-                const actual = [3.2, 4.8, 2.1, 5.3, 3.7, 6.1, 2.9];
-                const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-                const totalEst = estimated.reduce((s, v) => s + v, 0);
-                const totalAct = actual.reduce((s, v) => s + v, 0);
-                const savings = totalEst - totalAct;
-                const effPct = Math.round((1 - totalAct / totalEst) * 100);
-                const maxVal = Math.max(...estimated, ...actual);
-                const chartH = 100;
-                const chartW = 200;
-                const toX = (i: number) => (i / (days.length - 1)) * chartW;
-                const toY = (v: number) => chartH - (v / maxVal) * (chartH - 10);
-                const estPath = estimated.map((v, i) => `${i === 0 ? 'M' : 'L'}${toX(i)},${toY(v)}`).join(' ');
-                const actPoints = actual.map((v, i) => `${toX(i)},${toY(v)}`);
-                const actPath = `M${actPoints.join(' L')}`;
-                const actArea = `${actPath} L${chartW},${chartH} L0,${chartH} Z`;
-
-                return (
-                  <>
-                    <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-sm font-medium text-[#ccc] uppercase tracking-wider">Cost Efficiency</h2>
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${savings >= 0 ? 'bg-[#00d4aa]/15 text-[#00d4aa]' : 'bg-red-500/15 text-red-400'}`}>
-                        {effPct > 0 ? '+' : ''}{effPct}%
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-center mb-3">
-                      <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.5 }}
-                        className={`text-3xl font-bold ${savings >= 0 ? 'text-[#00d4aa]' : 'text-red-400'}`}
-                      >
-                        {savings >= 0 ? '-' : '+'}${Math.abs(savings).toFixed(2)}
-                      </motion.span>
-                      <span className="text-xs text-muted ml-2 mt-1">{savings >= 0 ? 'under budget' : 'over budget'}</span>
-                    </div>
-
-                    <svg viewBox={`0 0 ${chartW} ${chartH + 10}`} className="w-full" style={{ height: 110 }} preserveAspectRatio="none">
-                      <motion.path
-                        d={actArea}
-                        fill="#0080FF10"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                      />
-                      <motion.path
-                        d={actPath}
-                        fill="none"
-                        stroke="#0080FF"
-                        strokeWidth="2"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                      />
-                      <motion.path
-                        d={estPath}
-                        fill="none"
-                        stroke="#555"
-                        strokeWidth="1.5"
-                        strokeDasharray="4 3"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 1, delay: 0.6 }}
-                      />
-                      {actual.map((v, i) => (
-                        <motion.circle
-                          key={i}
-                          cx={toX(i)}
-                          cy={toY(v)}
-                          r="2.5"
-                          fill="#0080FF"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.7 + i * 0.05 }}
-                        />
-                      ))}
-                    </svg>
-
-                    <div className="flex justify-between text-[10px] text-muted mt-1 px-0.5">
-                      {days.map(d => <span key={d}>{d}</span>)}
-                    </div>
-
-                    <div className="flex items-center gap-4 mt-3 pt-3 border-t border-border text-xs text-muted">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-4 h-0 border-t border-dashed border-[#555]" />
-                        <span>Estimated ($5/day)</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-4 h-0.5 bg-[#0080FF] rounded-full" />
-                        <span>Actual</span>
-                      </div>
-                    </div>
-                  </>
-                );
-              })()}
-            </motion.div>
+            {/* Token Costs */}
+            <TokenCostsWidget />
 
           </div>
         </div>
