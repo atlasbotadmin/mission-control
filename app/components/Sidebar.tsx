@@ -77,7 +77,7 @@ const Sidebar = () => {
     <aside className="fixed left-0 top-0 h-screen w-16 bg-[#080808] border-r border-[#1a1a1a] flex flex-col items-center py-4 z-50">
       {/* Logo — Waypoint Compass */}
       <Link href="/" className="mb-6 group" title="Dashboard">
-        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" className="transition-transform duration-200 group-hover:scale-110">
+        <svg width="48" height="48" viewBox="0 0 44 44" fill="none" className="transition-transform duration-200 group-hover:scale-110">
           {/* Radial gradient backdrop */}
           <defs>
             <radialGradient id="logoBg" cx="50%" cy="50%" r="50%">
@@ -87,7 +87,7 @@ const Sidebar = () => {
             </radialGradient>
           </defs>
           <rect x="1" y="1" width="42" height="42" rx="10" fill="url(#logoBg)" className="transition-all duration-200"/>
-          <rect x="1" y="1" width="42" height="42" rx="10" stroke={pathname === '/' ? '#1a9fff' : '#333'} strokeWidth="0.6" fill="none" opacity="0.25" className="transition-colors duration-200"/>
+          <rect x="1" y="1" width="42" height="42" rx="10" stroke={pathname === '/' ? '#0080FF' : '#333'} strokeWidth="0.8" fill="none" opacity="0.4" className="transition-colors duration-200"/>
           {/* Main compass needle / arrow up */}
           <path
             d="M22 8L17 25L22 22L27 25Z"
