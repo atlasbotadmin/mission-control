@@ -75,27 +75,39 @@ const Sidebar = () => {
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-16 bg-[#080808] border-r border-[#1a1a1a] flex flex-col items-center py-4 z-50">
-      {/* Logo — links to Dashboard */}
+      {/* Logo — Waypoint Compass */}
       <Link href="/" className="mb-6 group" title="Dashboard">
         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" className="transition-transform duration-200 group-hover:scale-110">
-          <polygon
-            points="17,2 29.5,9.25 29.5,24.75 17,32 4.5,24.75 4.5,9.25"
+          {/* Main compass needle / arrow up */}
+          <path
+            d="M17 3L12 20L17 17L22 20Z"
+            fill={pathname === '/' ? '#0080FF' : '#555'}
+            opacity="0.25"
             stroke={pathname === '/' ? '#0080FF' : '#555'}
-            strokeWidth="1.8"
-            fill="none"
+            strokeWidth="1"
             className="transition-colors duration-200"
           />
-          <text
-            x="17"
-            y="22.5"
-            textAnchor="middle"
+          {/* Light refraction faces */}
+          <polygon
+            points="17,3 22,20 17,17"
             fill={pathname === '/' ? '#0080FF' : '#555'}
-            fontSize="18"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            fontWeight="600"
-            letterSpacing="-0.5"
+            opacity="0.15"
             className="transition-colors duration-200"
-          >A</text>
+          />
+          <polygon
+            points="17,3 12,20 17,17"
+            fill={pathname === '/' ? '#0080FF' : '#555'}
+            opacity="0.3"
+            className="transition-colors duration-200"
+          />
+          {/* South indicator */}
+          <line x1="17" y1="20" x2="17" y2="28" stroke={pathname === '/' ? '#0080FF' : '#555'} strokeWidth="1" opacity="0.2" className="transition-colors duration-200"/>
+          <circle cx="17" cy="29" r="1" fill={pathname === '/' ? '#0080FF' : '#555'} opacity="0.2" className="transition-colors duration-200"/>
+          {/* Orbiting dot */}
+          <circle r="1.2" fill="#00CCFF" opacity="0.8">
+            <animateMotion dur="4s" repeatCount="indefinite" path="M17,17 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
+            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite"/>
+          </circle>
         </svg>
       </Link>
 
