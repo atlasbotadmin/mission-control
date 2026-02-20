@@ -86,33 +86,30 @@ const Sidebar = () => {
               <stop offset="100%" stopColor={pathname === '/' ? '#1a9fff' : '#555'} stopOpacity="0"/>
             </radialGradient>
           </defs>
-          <rect x="1" y="1" width="42" height="42" rx="10" fill="url(#logoBg)" className="transition-all duration-200"/>
-          <rect x="1" y="1" width="42" height="42" rx="10" stroke={pathname === '/' ? '#0080FF' : '#333'} strokeWidth="0.8" fill="none" opacity="0.4" className="transition-colors duration-200"/>
-          {/* Main compass needle / arrow up */}
+          <rect x="1" y="1" width="42" height="42" rx="10" fill="url(#logoBg)" opacity={pathname === '/' ? 1 : 0} className="transition-all duration-200"/>
+          <rect x="1" y="1" width="42" height="42" rx="10" stroke="#0080FF" strokeWidth="0.8" fill="none" opacity={pathname === '/' ? 0.4 : 0} className="transition-opacity duration-200"/>
+          {/* Main compass needle / arrow up — always blue */}
           <path
             d="M22 8L17 25L22 22L27 25Z"
-            fill={pathname === '/' ? '#0080FF' : '#555'}
+            fill="#0080FF"
             opacity="0.45"
-            stroke={pathname === '/' ? '#0080FF' : '#555'}
+            stroke="#0080FF"
             strokeWidth="1"
-            className="transition-colors duration-200"
           />
           {/* Light refraction faces */}
           <polygon
             points="22,8 27,25 22,22"
-            fill={pathname === '/' ? '#0080FF' : '#555'}
+            fill="#0080FF"
             opacity="0.3"
-            className="transition-colors duration-200"
           />
           <polygon
             points="22,8 17,25 22,22"
-            fill={pathname === '/' ? '#0080FF' : '#555'}
+            fill="#0080FF"
             opacity="0.5"
-            className="transition-colors duration-200"
           />
           {/* South indicator */}
-          <line x1="22" y1="25" x2="22" y2="33" stroke={pathname === '/' ? '#0080FF' : '#555'} strokeWidth="1" opacity="0.25" className="transition-colors duration-200"/>
-          <circle cx="22" cy="34" r="1" fill={pathname === '/' ? '#0080FF' : '#555'} opacity="0.25" className="transition-colors duration-200"/>
+          <line x1="22" y1="25" x2="22" y2="33" stroke="#0080FF" strokeWidth="1" opacity="0.25"/>
+          <circle cx="22" cy="34" r="1" fill="#0080FF" opacity="0.25"/>
           {/* Orbiting dot */}
           <circle r="1.2" fill="#00CCFF" opacity="0.8">
             <animateMotion dur="4s" repeatCount="indefinite" path="M22,22 m-10,0 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0"/>
@@ -141,7 +138,9 @@ const Sidebar = () => {
             {isActive(item.href) && (
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
             )}
-            {icons[item.icon](isActive(item.href) ? '#0080FF' : '#bbb')}
+            <span className={`transition-colors duration-200 ${isActive(item.href) ? 'text-[#0080FF]' : 'text-[#bbb] group-hover:text-[#0080FF]'}`}>
+              {icons[item.icon]('currentColor')}
+            </span>
             <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
               {item.label}
             </span>
@@ -172,7 +171,9 @@ const Sidebar = () => {
             {isActive(item.href) && (
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-accent rounded-r"></div>
             )}
-            {icons[item.icon](isActive(item.href) ? '#0080FF' : '#bbb')}
+            <span className={`transition-colors duration-200 ${isActive(item.href) ? 'text-[#0080FF]' : 'text-[#bbb] group-hover:text-[#0080FF]'}`}>
+              {icons[item.icon]('currentColor')}
+            </span>
             <span className="absolute left-16 ml-2 px-3 py-1.5 bg-[#1a1a1a] text-text text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-[#252525]">
               {item.label}
             </span>
