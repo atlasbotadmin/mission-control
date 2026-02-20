@@ -225,65 +225,6 @@ export default function Home() {
             {/* Calendar Panel */}
             <MiniCalendar />
 
-            {/* Weekly Breakdown */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 }}
-              className="bg-card border border-border rounded-lg p-5"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-medium text-[#ccc] uppercase tracking-wider">Weekly Breakdown</h2>
-                <a href="/activity" className="text-xs text-accent hover:underline">View all →</a>
-              </div>
-              <table className="w-full table-fixed">
-                <colgroup>
-                  <col style={{ width: '72px' }} />
-                  {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => (
-                    <col key={d} />
-                  ))}
-                </colgroup>
-                <thead>
-                  <tr>
-                    <th className="text-left text-xs text-[#555] pb-3"></th>
-                    {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => (
-                      <th key={d} className="text-center text-xs text-[#bbb] pb-3 font-medium">{d}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { name: 'Work', color: '#0080FF', data: [8, 8, 8, 8, 8, 0, 0] },
-                    { name: 'Study', color: '#8B5CF6', data: [1, 0, 1.5, 0, 1, 2, 0] },
-                    { name: 'Fitness', color: '#00d4aa', data: [1.5, 1, 0, 1.5, 1, 0, 1] },
-                  ].map((cat, catIdx) => (
-                    <tr key={cat.name}>
-                      <td className="py-1.5 pr-1 border-r border-[#555] align-middle text-center">
-                        <span className="text-xs font-medium" style={{ color: cat.color }}>{cat.name}</span>
-                      </td>
-                      {cat.data.map((hrs, i) => (
-                        <td key={i} className={`py-1.5 px-0.5 ${i === 0 ? 'pl-3' : ''}`}>
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.5 + catIdx * 0.08 + i * 0.03 }}
-                            className="w-full rounded flex items-center justify-center text-[10px] font-medium"
-                            style={{
-                              height: 28,
-                              backgroundColor: hrs > 0 ? `${cat.color}${Math.round((hrs / 8) * 40 + 15).toString(16).padStart(2, '0')}` : '#141414',
-                              color: hrs > 0 ? '#fff' : '#333',
-                            }}
-                          >
-                            {hrs > 0 ? hrs : '–'}
-                          </motion.div>
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </motion.div>
-
           </div>
 
           {/* Right Column */}
@@ -357,48 +298,110 @@ export default function Home() {
               })()}
             </motion.div>
 
-            {/* Certifications */}
+            {/* Cost Efficiency */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.42 }}
-              className="bg-card border border-border rounded-lg p-6"
+              className="bg-card border border-border rounded-lg p-5"
             >
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold">Certifications</h2>
-                <a href="/certifications" className="text-sm text-accent hover:underline">View all →</a>
-              </div>
-              <div className="space-y-4">
-                {[
-                  { name: 'MO-210 Excel 365', progress: 60 },
-                  { name: 'AZ-900 Azure Fundamentals', progress: 40 },
-                  { name: 'DP-900 Azure Data Fundamentals', progress: 15 },
-                ].map((cert, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                  >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-sm font-medium">{cert.name}</span>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium" style={{ color: '#F59E0B' }}>In Progress</span>
-                        <span className="text-sm font-semibold text-accent">{cert.progress}%</span>
+              {(() => {
+                const estimated = [5, 5, 5, 5, 5, 5, 5];
+                const actual = [3.2, 4.8, 2.1, 5.3, 3.7, 6.1, 2.9];
+                const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                const totalEst = estimated.reduce((s, v) => s + v, 0);
+                const totalAct = actual.reduce((s, v) => s + v, 0);
+                const savings = totalEst - totalAct;
+                const effPct = Math.round((1 - totalAct / totalEst) * 100);
+                const maxVal = Math.max(...estimated, ...actual);
+                const chartH = 100;
+                const chartW = 200;
+                const toX = (i: number) => (i / (days.length - 1)) * chartW;
+                const toY = (v: number) => chartH - (v / maxVal) * (chartH - 10);
+                const estPath = estimated.map((v, i) => `${i === 0 ? 'M' : 'L'}${toX(i)},${toY(v)}`).join(' ');
+                const actPoints = actual.map((v, i) => `${toX(i)},${toY(v)}`);
+                const actPath = `M${actPoints.join(' L')}`;
+                const actArea = `${actPath} L${chartW},${chartH} L0,${chartH} Z`;
+
+                return (
+                  <>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-sm font-medium text-[#ccc] uppercase tracking-wider">Cost Efficiency</h2>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${savings >= 0 ? 'bg-[#00d4aa]/15 text-[#00d4aa]' : 'bg-red-500/15 text-red-400'}`}>
+                        {effPct > 0 ? '+' : ''}{effPct}%
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-center mb-3">
+                      <motion.span
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className={`text-3xl font-bold ${savings >= 0 ? 'text-[#00d4aa]' : 'text-red-400'}`}
+                      >
+                        {savings >= 0 ? '-' : '+'}${Math.abs(savings).toFixed(2)}
+                      </motion.span>
+                      <span className="text-xs text-muted ml-2 mt-1">{savings >= 0 ? 'under budget' : 'over budget'}</span>
+                    </div>
+
+                    <svg viewBox={`0 0 ${chartW} ${chartH + 10}`} className="w-full" style={{ height: 110 }} preserveAspectRatio="none">
+                      <motion.path
+                        d={actArea}
+                        fill="#0080FF10"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                      />
+                      <motion.path
+                        d={actPath}
+                        fill="none"
+                        stroke="#0080FF"
+                        strokeWidth="2"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                      />
+                      <motion.path
+                        d={estPath}
+                        fill="none"
+                        stroke="#555"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 3"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                      />
+                      {actual.map((v, i) => (
+                        <motion.circle
+                          key={i}
+                          cx={toX(i)}
+                          cy={toY(v)}
+                          r="2.5"
+                          fill="#0080FF"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.7 + i * 0.05 }}
+                        />
+                      ))}
+                    </svg>
+
+                    <div className="flex justify-between text-[10px] text-muted mt-1 px-0.5">
+                      {days.map(d => <span key={d}>{d}</span>)}
+                    </div>
+
+                    <div className="flex items-center gap-4 mt-3 pt-3 border-t border-border text-xs text-muted">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-4 h-0 border-t border-dashed border-[#555]" />
+                        <span>Estimated ($5/day)</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-4 h-0.5 bg-[#0080FF] rounded-full" />
+                        <span>Actual</span>
                       </div>
                     </div>
-                    <div className="w-full bg-background rounded-full h-2">
-                      <motion.div
-                        className="h-2 rounded-full"
-                        style={{ backgroundColor: '#0080FF' }}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${cert.progress}%` }}
-                        transition={{ duration: 0.8, delay: 0.6 + i * 0.1 }}
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                  </>
+                );
+              })()}
             </motion.div>
 
           </div>

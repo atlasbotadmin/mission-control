@@ -28,33 +28,48 @@ export default function ActivityPage() {
       {/* Key Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         {[
-          { label: 'Total Hours', value: TOTAL, color: '#0080FF', delta: '+2' },
-          ...CATEGORIES.map(c => ({ label: c.name, value: c.total, color: c.color, delta: c.delta })),
-        ].map((m, i) => (
-          <motion.div
-            key={m.label}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.08 }}
-            className="bg-card border border-border rounded-xl p-5"
-          >
-            <div className="text-xs text-muted uppercase tracking-wider mb-2">{m.label}</div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold" style={{ color: m.color }}>{m.value}</span>
-              <span className="text-xs text-[#555]">hrs</span>
-            </div>
-            <div className="text-xs mt-1" style={{ color: m.color }}>{m.delta} hrs</div>
-            <div className="mt-3 h-1 rounded-full bg-[#1a1a1a]">
-              <motion.div
-                className="h-1 rounded-full"
-                style={{ backgroundColor: m.color }}
-                initial={{ width: 0 }}
-                animate={{ width: `${(m.value / TOTAL) * 100}%` }}
-                transition={{ duration: 0.8, delay: 0.2 + i * 0.08 }}
-              />
-            </div>
-          </motion.div>
-        ))}
+          { label: 'Total Hours', value: TOTAL, color: '#0080FF', delta: '+2', spark: [38, 42, 45, 48, 46, 50, 51.5] },
+          ...CATEGORIES.map(c => ({ label: c.name, value: c.total, color: c.color, delta: c.delta, spark: c.data })),
+        ].map((m, i) => {
+          const isPositive = !m.delta.startsWith('−');
+          const sparkH = 24;
+          const sparkW = 60;
+          const sparkMax = Math.max(...m.spark, 1);
+          const sparkPoints = m.spark.map((v, si) => `${(si / (m.spark.length - 1)) * sparkW},${sparkH - (v / sparkMax) * sparkH}`).join(' ');
+          return (
+            <motion.div
+              key={m.label}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08 }}
+              className="bg-card border border-border rounded-xl p-5 overflow-hidden"
+              style={{ borderLeft: `3px solid ${m.color}` }}
+            >
+              <div className="flex items-start justify-between mb-2">
+                <div className="text-xs text-muted uppercase tracking-wider">{m.label}</div>
+                <svg viewBox={`0 0 ${sparkW} ${sparkH}`} width={sparkW} height={sparkH} className="flex-shrink-0">
+                  <polyline points={sparkPoints} fill="none" stroke={m.color} strokeWidth="1.5" strokeLinejoin="round" />
+                  <polyline points={`0,${sparkH} ${sparkPoints} ${sparkW},${sparkH}`} fill={`${m.color}15`} stroke="none" />
+                </svg>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-extrabold tracking-tight" style={{ color: m.color }}>{m.value}</span>
+                <span className="text-xs text-[#555]">hrs</span>
+              </div>
+              <div className="flex items-center gap-1 mt-1.5">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  {isPositive ? (
+                    <path d="M6 2L10 7H2L6 2Z" fill="#00d4aa" />
+                  ) : (
+                    <path d="M6 10L2 5H10L6 10Z" fill="#ef4444" />
+                  )}
+                </svg>
+                <span className={`text-sm font-semibold ${isPositive ? 'text-[#00d4aa]' : 'text-red-400'}`}>{m.delta} hrs</span>
+                <span className="text-xs text-muted ml-0.5">vs last week</span>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Weekly Breakdown Grid */}

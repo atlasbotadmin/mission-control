@@ -123,22 +123,23 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader title="Projects" />
+      <PageHeader title="Tasks" />
       <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-6">
 
         {/* KPI Row */}
         <div className="grid grid-cols-3 gap-4">
           {[
-            { label: 'To-Do', value: String(columns.todo.length), color: '#F59E0B' },
-            { label: 'In Progress', value: String(columns.doing.length), color: '#0080FF' },
-            { label: 'Completed', value: String(doneCount), color: '#00d4aa' },
+            { label: 'To-Do', value: String(columns.todo.length), color: '#F59E0B', bg: 'rgba(245,158,11,0.06)' },
+            { label: 'In Progress', value: String(columns.doing.length), color: '#0080FF', bg: 'rgba(0,128,255,0.06)' },
+            { label: 'Completed', value: String(doneCount), color: '#00d4aa', bg: 'rgba(0,212,170,0.06)' },
           ].map((kpi, i) => (
             <motion.div
               key={kpi.label}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
-              className="bg-card border border-border rounded-lg p-4"
+              className="border border-border rounded-lg p-4"
+              style={{ backgroundColor: kpi.bg, borderLeft: `3px solid ${kpi.color}` }}
             >
               <div className="text-xs text-muted mb-1">{kpi.label}</div>
               <div className="text-2xl font-bold" style={{ color: kpi.color }}>{kpi.value}</div>
