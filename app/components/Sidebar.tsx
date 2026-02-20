@@ -77,7 +77,7 @@ const Sidebar = () => {
     <aside className="fixed left-0 top-0 h-screen w-16 bg-[#080808] border-r border-[#1a1a1a] flex flex-col items-center py-4 z-50">
       {/* Logo — Waypoint Compass */}
       <Link href="/" className="mb-6 group" title="Dashboard">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" className="transition-transform duration-200 group-hover:scale-110">
+        <svg width="40" height="40" viewBox="0 0 34 34" fill="none" className="transition-transform duration-200 group-hover:scale-110">
           {/* Main compass needle / arrow up */}
           <path
             d="M17 3L12 20L17 17L22 20Z"
