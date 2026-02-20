@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import PageHeader from '../components/PageHeader';
 
 interface SubSection {
@@ -141,13 +142,16 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
-function ProgressBar({ value }: { value: number }) {
+function ProgressBar({ value, delay = 0 }: { value: number; delay?: number }) {
   const color = value === 100 ? '#00d4aa' : '#0080FF';
   return (
     <div className="w-full h-2 bg-[#1a1a1a] rounded-full overflow-hidden">
-      <div
-        className="h-full rounded-full transition-all duration-500"
-        style={{ width: `${value}%`, backgroundColor: color }}
+      <motion.div
+        className="h-full rounded-full"
+        style={{ backgroundColor: color }}
+        initial={{ width: 0 }}
+        animate={{ width: `${value}%` }}
+        transition={{ duration: 0.8, delay }}
       />
     </div>
   );
@@ -246,44 +250,56 @@ export default function CertificationsPage() {
           const inProgress = certs.filter(c => { const p = getProgress(c); return p > 0 && p < 100; }).length;
           const completed = certs.filter(c => getProgress(c) === 100).length;
           return [
-            { label: 'Certs in Progress', value: String(inProgress) },
-            { label: 'Completed', value: String(completed) },
-            { label: 'Next Exam', value: 'MO-210 · Mar 2026' },
+            { label: 'Certs in Progress', value: String(inProgress), color: '#F59E0B' },
+            { label: 'Completed', value: String(completed), color: '#00d4aa' },
+            { label: 'Next Exam', value: 'MO-210 · Mar 2026', color: '#0080FF' },
           ];
-        })().map((s) => (
-          <div key={s.label} className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-5">
-            <div className="text-xs text-[#888] uppercase tracking-wider mb-1">{s.label}</div>
-            <div className="text-lg font-semibold text-white">{s.value}</div>
-          </div>
+        })().map((s, i) => (
+          <motion.div
+            key={s.label}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.08 }}
+            className="bg-card border border-border rounded-xl p-5"
+          >
+            <div className="text-xs text-muted uppercase tracking-wider mb-1">{s.label}</div>
+            <div className="text-2xl font-bold" style={{ color: s.color }}>{s.value}</div>
+          </motion.div>
         ))}
       </div>
 
       {/* Certification Cards */}
       <div className="space-y-4 mb-10">
-        {certs.map((cert) => {
+        {certs.map((cert, certIdx) => {
           const progress = getProgress(cert);
           const status = getStatus(progress);
           return (
-            <div key={cert.id} className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-6">
+            <motion.div
+              key={cert.id}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 + certIdx * 0.1 }}
+              className="bg-card border border-border rounded-xl p-6"
+            >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                 <div>
                   <h2 className="text-lg font-semibold text-white">{cert.name}</h2>
-                  <p className="text-sm text-[#888]">{cert.issuer}</p>
+                  <p className="text-sm text-muted">{cert.issuer}</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-[#888]">Exam: {cert.examDate}</span>
+                  <span className="text-xs text-muted">Exam: {cert.examDate}</span>
                   <StatusBadge status={status} />
                 </div>
               </div>
 
               <div className="flex items-center gap-3 mb-4">
-                <ProgressBar value={progress} />
+                <ProgressBar value={progress} delay={0.35 + certIdx * 0.1} />
                 <span className={`text-sm font-medium whitespace-nowrap ${progress === 100 ? 'text-[#00d4aa]' : 'text-[#0080FF]'}`}>{progress}%</span>
               </div>
 
               <button
                 onClick={() => toggleCert(cert.id)}
-                className="text-xs text-[#888] hover:text-white transition-colors mb-3"
+                className="text-xs text-muted hover:text-white transition-colors mb-3"
               >
                 {expandedCerts[cert.id] ? <><span className="text-lg">▾</span> Hide modules</> : <><span className="text-lg">▸</span> Show modules</>}
               </button>
@@ -298,7 +314,12 @@ export default function CertificationsPage() {
                     const doneCount = mod.subSections.filter(s => s.done).length;
 
                     return (
-                      <div key={modIdx}>
+                      <motion.div
+                        key={modIdx}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.4 + certIdx * 0.1 + modIdx * 0.05 }}
+                      >
                         <div
                           onClick={() => toggleModule(modKey)}
                           className="flex items-center gap-3 py-2 px-2 rounded-lg cursor-pointer hover:bg-[#111] transition-colors group"
@@ -341,12 +362,12 @@ export default function CertificationsPage() {
                             ))}
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     );
                   })}
                 </div>
               )}
-            </div>
+            </motion.div>
           );
         })}
       </div>

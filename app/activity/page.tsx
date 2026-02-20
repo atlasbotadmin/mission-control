@@ -1,4 +1,5 @@
 'use client';
+import { motion } from 'framer-motion';
 import PageHeader from '../components/PageHeader';
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -29,37 +30,54 @@ export default function ActivityPage() {
         {[
           { label: 'Total Hours', value: TOTAL, color: '#0080FF', delta: '+2' },
           ...CATEGORIES.map(c => ({ label: c.name, value: c.total, color: c.color, delta: c.delta })),
-        ].map((m) => (
-          <div key={m.label} className="bg-[#0e0e0e] border border-[#1a1a1a] rounded-xl p-5">
-            <div className="text-xs text-[#666] uppercase tracking-wider mb-2">{m.label}</div>
+        ].map((m, i) => (
+          <motion.div
+            key={m.label}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.08 }}
+            className="bg-card border border-border rounded-xl p-5"
+          >
+            <div className="text-xs text-muted uppercase tracking-wider mb-2">{m.label}</div>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-semibold text-white">{m.value}</span>
+              <span className="text-2xl font-bold" style={{ color: m.color }}>{m.value}</span>
               <span className="text-xs text-[#555]">hrs</span>
             </div>
             <div className="text-xs mt-1" style={{ color: m.color }}>{m.delta} hrs</div>
             <div className="mt-3 h-1 rounded-full bg-[#1a1a1a]">
-              <div className="h-1 rounded-full" style={{ width: `${(m.value / TOTAL) * 100}%`, backgroundColor: m.color }} />
+              <motion.div
+                className="h-1 rounded-full"
+                style={{ backgroundColor: m.color }}
+                initial={{ width: 0 }}
+                animate={{ width: `${(m.value / TOTAL) * 100}%` }}
+                transition={{ duration: 0.8, delay: 0.2 + i * 0.08 }}
+              />
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {/* Weekly Breakdown Grid */}
-      <div className="bg-[#0e0e0e] border border-[#1a1a1a] rounded-xl p-6 mb-10">
-        <h2 className="text-sm font-medium text-[#888] uppercase tracking-wider mb-6">Weekly Breakdown</h2>
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
+        className="bg-card border border-border rounded-xl p-6 mb-10"
+      >
+        <h2 className="text-sm font-medium text-muted uppercase tracking-wider mb-6">Weekly Breakdown</h2>
         <div className="overflow-x-auto">
           <table className="w-full" style={{ minWidth: 500 }}>
             <thead>
               <tr>
                 <th className="text-left text-xs text-[#555] pb-4 w-24"></th>
                 {DAYS.map(d => (
-                  <th key={d} className="text-center text-xs text-[#666] pb-4 font-medium">{d}</th>
+                  <th key={d} className="text-center text-xs text-muted pb-4 font-medium">{d}</th>
                 ))}
                 <th className="text-right text-xs text-[#555] pb-4 pl-4">Total</th>
               </tr>
             </thead>
             <tbody>
-              {CATEGORIES.map((cat) => (
+              {CATEGORIES.map((cat, catIdx) => (
                 <tr key={cat.name}>
                   <td className="py-2">
                     <div className="flex items-center gap-2">
@@ -70,7 +88,10 @@ export default function ActivityPage() {
                   {cat.data.map((hrs, i) => (
                     <td key={i} className="py-2 px-1">
                       <div className="flex flex-col items-center gap-1">
-                        <div
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.4 + catIdx * 0.08 + i * 0.03 }}
                           className="w-full rounded-md flex items-center justify-center text-xs font-medium transition-all"
                           style={{
                             height: 40,
@@ -79,7 +100,7 @@ export default function ActivityPage() {
                           }}
                         >
                           {hrs > 0 ? hrs : '–'}
-                        </div>
+                        </motion.div>
                       </div>
                     </td>
                   ))}
@@ -91,13 +112,18 @@ export default function ActivityPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </motion.div>
 
       {/* Weekly Trends */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Stacked Bar Chart */}
-        <div className="lg:col-span-2 bg-[#0e0e0e] border border-[#1a1a1a] rounded-xl p-6">
-          <h2 className="text-sm font-medium text-[#888] uppercase tracking-wider mb-6">Daily Totals</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="lg:col-span-2 bg-card border border-border rounded-xl p-6"
+        >
+          <h2 className="text-sm font-medium text-muted uppercase tracking-wider mb-6">Daily Totals</h2>
           <div className="flex items-end gap-3 h-48">
             {DAYS.map((day, i) => {
               const work = CATEGORIES[0].data[i];
@@ -106,7 +132,13 @@ export default function ActivityPage() {
               const total = work + study + fitness;
               return (
                 <div key={day} className="flex-1 flex flex-col items-center gap-2">
-                  <div className="w-full flex flex-col-reverse rounded-md overflow-hidden" style={{ height: `${(total / MAX_HOURS) * 100}%`, minHeight: total > 0 ? 4 : 0 }}>
+                  <motion.div
+                    className="w-full flex flex-col-reverse rounded-md overflow-hidden"
+                    initial={{ height: 0 }}
+                    animate={{ height: `${(total / MAX_HOURS) * 100}%` }}
+                    transition={{ duration: 0.6, delay: 0.55 + i * 0.08 }}
+                    style={{ minHeight: total > 0 ? 4 : 0 }}
+                  >
                     {CATEGORIES.map((cat) => {
                       const h = cat.data[i];
                       if (h === 0) return null;
@@ -118,7 +150,7 @@ export default function ActivityPage() {
                         />
                       );
                     })}
-                  </div>
+                  </motion.div>
                   <span className="text-[10px] text-[#555]">{day}</span>
                 </div>
               );
@@ -128,37 +160,53 @@ export default function ActivityPage() {
           <div className="flex justify-between text-[10px] text-[#444] mt-1 px-1">
             <span>0h</span><span>{MAX_HOURS}h</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Distribution */}
-        <div className="bg-[#0e0e0e] border border-[#1a1a1a] rounded-xl p-6">
-          <h2 className="text-sm font-medium text-[#888] uppercase tracking-wider mb-6">Distribution</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="bg-card border border-border rounded-xl p-6"
+        >
+          <h2 className="text-sm font-medium text-muted uppercase tracking-wider mb-6">Distribution</h2>
           <div className="flex flex-col gap-5">
-            {CATEGORIES.map((cat) => {
+            {CATEGORIES.map((cat, i) => {
               const pct = ((cat.total / TOTAL) * 100).toFixed(1);
               return (
-                <div key={cat.name}>
+                <motion.div
+                  key={cat.name}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.65 + i * 0.1 }}
+                >
                   <div className="flex justify-between text-sm mb-2">
                     <span className="text-[#aaa]">{cat.name}</span>
                     <span style={{ color: cat.color }} className="font-medium">{pct}%</span>
                   </div>
                   <div className="h-2 rounded-full bg-[#1a1a1a]">
-                    <div className="h-2 rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: cat.color }} />
+                    <motion.div
+                      className="h-2 rounded-full"
+                      style={{ backgroundColor: cat.color }}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${pct}%` }}
+                      transition={{ duration: 0.8, delay: 0.7 + i * 0.1 }}
+                    />
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
           {/* Legend */}
-          <div className="flex flex-wrap gap-4 mt-8 pt-5 border-t border-[#1a1a1a]">
+          <div className="flex flex-wrap gap-4 mt-8 pt-5 border-t border-border">
             {CATEGORIES.map(c => (
-              <div key={c.name} className="flex items-center gap-2 text-xs text-[#666]">
+              <div key={c.name} className="flex items-center gap-2 text-xs text-muted">
                 <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: c.color }} />
                 {c.name}
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
       </div>
     </div>

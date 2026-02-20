@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PageHeader from './components/PageHeader';
 
 // Mock event data
@@ -82,7 +83,12 @@ function MiniCalendar() {
   const selectedLabel = selectedDateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 
   return (
-    <div className="bg-card border border-border rounded-lg p-8">
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+      className="bg-card border border-border rounded-lg p-8"
+    >
       {/* Month nav */}
       <div className="flex items-center justify-between mb-6">
         <button onClick={prevMonth} className="text-muted hover:text-foreground transition-colors p-1">
@@ -138,10 +144,16 @@ function MiniCalendar() {
         ) : (
           <div className="space-y-0">
             {selectedEvents.map((evt, i) => (
-              <div key={i} className={`flex items-center gap-3 text-sm py-2 ${i > 0 ? 'border-t border-border/50' : ''}`}>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05 }}
+                className={`flex items-center gap-3 text-sm py-2 ${i > 0 ? 'border-t border-border/50' : ''}`}
+              >
                 <span className="text-muted w-20 text-xs shrink-0">{evt.time || 'All day'}</span>
                 <span>{evt.title}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}
@@ -158,7 +170,7 @@ function MiniCalendar() {
           <span>72°F • Partly Cloudy</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -190,6 +202,23 @@ export default function Home() {
       } />
       <div className="max-w-7xl mx-auto space-y-6 p-4 md:p-8">
 
+        {/* KPI Summary Row */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { label: 'Hours This Week', value: '51.5', sub: '40 work · 5.5 study · 6 fitness', color: '#0080FF' },
+            { label: 'Next Event', value: 'Morning', sub: '4:30 AM · Routine', color: '#00d4aa' },
+            { label: 'Days Until Payday', value: '4', sub: 'Feb 20, 2026', color: '#F59E0B' },
+            { label: 'Active Agents', value: '1', sub: 'Atlas online · 6 idle', color: '#A855F7' },
+          ].map((kpi, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
+              className="bg-card border border-border rounded-lg p-4">
+              <div className="text-xs text-muted mb-1">{kpi.label}</div>
+              <div className="text-2xl font-bold" style={{ color: kpi.color }}>{kpi.value}</div>
+              <div className="text-xs text-muted mt-1">{kpi.sub}</div>
+            </motion.div>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column */}
           <div className="lg:col-span-2 space-y-6">
@@ -197,7 +226,12 @@ export default function Home() {
             <MiniCalendar />
 
             {/* Weekly Breakdown */}
-            <div className="bg-card border border-border rounded-lg p-5">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45 }}
+              className="bg-card border border-border rounded-lg p-5"
+            >
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-medium text-[#ccc] uppercase tracking-wider">Weekly Breakdown</h2>
                 <a href="/activity" className="text-xs text-accent hover:underline">View all →</a>
@@ -222,14 +256,17 @@ export default function Home() {
                     { name: 'Work', color: '#0080FF', data: [8, 8, 8, 8, 8, 0, 0] },
                     { name: 'Study', color: '#8B5CF6', data: [1, 0, 1.5, 0, 1, 2, 0] },
                     { name: 'Fitness', color: '#00d4aa', data: [1.5, 1, 0, 1.5, 1, 0, 1] },
-                  ].map((cat) => (
+                  ].map((cat, catIdx) => (
                     <tr key={cat.name}>
                       <td className="py-1.5 pr-1 border-r border-[#555] align-middle text-center">
                         <span className="text-xs font-medium" style={{ color: cat.color }}>{cat.name}</span>
                       </td>
                       {cat.data.map((hrs, i) => (
                         <td key={i} className={`py-1.5 px-0.5 ${i === 0 ? 'pl-3' : ''}`}>
-                          <div
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.5 + catIdx * 0.08 + i * 0.03 }}
                             className="w-full rounded flex items-center justify-center text-[10px] font-medium"
                             style={{
                               height: 28,
@@ -238,21 +275,26 @@ export default function Home() {
                             }}
                           >
                             {hrs > 0 ? hrs : '–'}
-                          </div>
+                          </motion.div>
                         </td>
                       ))}
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>
+            </motion.div>
 
           </div>
 
           {/* Right Column */}
           <div className="space-y-6">
             {/* Weather Widget */}
-            <div className="bg-card border border-border rounded-lg p-5">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="bg-card border border-border rounded-lg p-5"
+            >
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-4xl font-light tracking-tight">62°F</div>
@@ -272,10 +314,15 @@ export default function Home() {
                 <span>·</span>
                 <span>12 mph N</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Certifications */}
-            <div className="bg-card border border-border rounded-lg p-6">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.42 }}
+              className="bg-card border border-border rounded-lg p-6"
+            >
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold">Certifications</h2>
                 <a href="/certifications" className="text-sm text-accent hover:underline">View all →</a>
@@ -286,7 +333,12 @@ export default function Home() {
                   { name: 'AZ-900 Azure Fundamentals', progress: 40 },
                   { name: 'DP-900 Azure Data Fundamentals', progress: 15 },
                 ].map((cert, i) => (
-                  <div key={i}>
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + i * 0.1 }}
+                  >
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-sm font-medium">{cert.name}</span>
                       <div className="flex items-center gap-2">
@@ -295,15 +347,18 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="w-full bg-background rounded-full h-2">
-                      <div
-                        className="h-2 rounded-full transition-all"
-                        style={{ width: `${cert.progress}%`, backgroundColor: '#0080FF' }}
-                      ></div>
+                      <motion.div
+                        className="h-2 rounded-full"
+                        style={{ backgroundColor: '#0080FF' }}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${cert.progress}%` }}
+                        transition={{ duration: 0.8, delay: 0.6 + i * 0.1 }}
+                      />
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
