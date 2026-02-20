@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Oxanium, Exo_2 } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
 
-const inter = Inter({
+const oxanium = Oxanium({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-oxanium",
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+});
+
+const exo2 = Exo_2({
+  subsets: ["latin"],
+  variable: "--font-exo2",
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -19,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={inter.className}>
+    <html lang="en" className={`${oxanium.variable} ${exo2.variable}`}>
+      <body className={exo2.className}>
         <Sidebar />
         <main className="pl-16 h-screen overflow-y-auto flex-1">{children}</main>
       </body>
