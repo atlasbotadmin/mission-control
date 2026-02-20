@@ -129,8 +129,8 @@ export default function ProjectsPage() {
         {/* KPI Row */}
         <div className="grid grid-cols-3 gap-4">
           {[
-            { label: 'Total Tasks', value: String(totalTasks), color: '#0080FF' },
-            { label: 'In Progress', value: String(columns.doing.length), color: '#F59E0B' },
+            { label: 'To-Do', value: String(columns.todo.length), color: '#F59E0B' },
+            { label: 'In Progress', value: String(columns.doing.length), color: '#0080FF' },
             { label: 'Completed', value: String(doneCount), color: '#00d4aa' },
           ].map((kpi, i) => (
             <motion.div
