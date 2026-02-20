@@ -78,8 +78,15 @@ const Sidebar = () => {
       {/* Logo — Waypoint Compass */}
       <Link href="/" className="mb-6 group" title="Dashboard">
         <svg width="40" height="40" viewBox="0 0 34 34" fill="none" className="transition-transform duration-200 group-hover:scale-110">
-          {/* Bezel circle */}
-          <circle cx="17" cy="17" r="15.5" stroke={pathname === '/' ? '#0080FF' : '#444'} strokeWidth="0.8" fill="none" opacity="0.3" className="transition-colors duration-200"/>
+          {/* Radial gradient backdrop */}
+          <defs>
+            <radialGradient id="logoBg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor={pathname === '/' ? '#0080FF' : '#555'} stopOpacity="0.12"/>
+              <stop offset="100%" stopColor={pathname === '/' ? '#0080FF' : '#555'} stopOpacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect x="1" y="1" width="32" height="32" rx="8" fill="url(#logoBg)" className="transition-all duration-200"/>
+          <rect x="1" y="1" width="32" height="32" rx="8" stroke={pathname === '/' ? '#0080FF' : '#333'} strokeWidth="0.6" fill="none" opacity="0.2" className="transition-colors duration-200"/>
           {/* Main compass needle / arrow up */}
           <path
             d="M17 3L12 20L17 17L22 20Z"
