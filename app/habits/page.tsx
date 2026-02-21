@@ -204,10 +204,10 @@ export default function HabitsPage() {
           </div>
 
           {/* Day labels + grid */}
-          <div className="flex gap-2">
-            <div className="flex flex-col gap-[3px] pt-5">
+          <div className="flex gap-[6px]">
+            <div className="flex flex-col gap-[3px] shrink-0">
               {dayLabels.map((d) => (
-                <div key={d} className="h-[14px] text-[10px] text-muted flex items-center">
+                <div key={d} className="h-[14px] w-[28px] text-[10px] text-muted flex items-center leading-none">
                   {d}
                 </div>
               ))}
@@ -258,82 +258,6 @@ export default function HabitsPage() {
               />
             ))}
             <span className="text-[10px] text-muted">More</span>
-          </div>
-        </motion.div>
-
-        {/* Today's Habits */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-lg font-semibold font-[family-name:var(--font-oxanium)] mb-4">
-            Today&apos;s Habits
-          </h2>
-          <div className="bg-card border border-border rounded-xl divide-y divide-border">
-            {habits.map((habit, i) => (
-              <motion.div
-                key={habit.id}
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.06, duration: 0.35 }}
-                className="flex items-center justify-between px-5 py-4 hover:bg-white/[0.02] transition-colors cursor-pointer"
-                onClick={() => toggleHabit(habit.id)}
-              >
-                <div className="flex items-center gap-4">
-                  {/* Checkbox */}
-                  <div
-                    className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-200 ${
-                      habit.todayDone
-                        ? 'bg-accent border-accent'
-                        : 'border-[#444] hover:border-accent/50'
-                    }`}
-                  >
-                    {habit.todayDone && (
-                      <motion.svg
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                        width="12"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        fill="none"
-                      >
-                        <path
-                          d="M2.5 6L5 8.5L9.5 3.5"
-                          stroke="white"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </motion.svg>
-                    )}
-                  </div>
-                  <span
-                    className={`text-sm transition-all ${
-                      habit.todayDone ? 'text-muted line-through' : 'text-text'
-                    }`}
-                  >
-                    {habit.name}
-                  </span>
-                  <span
-                    className="text-[10px] uppercase tracking-wider font-medium px-2 py-0.5 rounded-full"
-                    style={{
-                      color: categoryColors[habit.category],
-                      backgroundColor: categoryColors[habit.category] + '15',
-                    }}
-                  >
-                    {habit.category}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className={getFlameScale(habit.currentStreak)}>
-                    {habit.currentStreak > 0 ? '\uD83D\uDD25' : ''}
-                  </span>
-                  <span className="text-muted font-mono">{habit.currentStreak}d</span>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
 

@@ -16,9 +16,8 @@ const icons: Record<string, (color: string) => ReactNode> = {
   ),
   projects: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-      <path d="M2 17l10 5 10-5" />
-      <path d="M2 12l10 5 10-5" />
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <path d="M8 12l3 3 5-6" />
     </svg>
   ),
   agents: (color) => (
@@ -36,9 +35,10 @@ const icons: Record<string, (color: string) => ReactNode> = {
   ),
   certifications: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="9" r="6" />
-      <path d="M12 15l-3 7 3-2 3 2-3-7" />
-      <path d="M10 7l1 2h2l1-2" />
+      <circle cx="12" cy="8" r="6" />
+      <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" />
+      <path d="M12 5v2" />
+      <path d="M10 8h4" />
     </svg>
   ),
   finances: (color) => (
@@ -53,10 +53,10 @@ const icons: Record<string, (color: string) => ReactNode> = {
   ),
   habits: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22V12" />
-      <path d="M12 12c-3-4-7-3-8-1s1 5 4 5" />
-      <path d="M12 12c3-4 7-3 8-1s-1 5-4 5" />
-      <path d="M12 12c-2-5-1-9 0-10 1 1 2 5 0 10" />
+      <path d="M12 22v-8" />
+      <path d="M7 14.5c0-3.5 2.5-6 5-8 2.5 2 5 4.5 5 8a5 5 0 0 1-10 0z" />
+      <path d="M12 6.5V3" />
+      <path d="M9.5 5c1.5 0 2.5 1 2.5 1s1-1 2.5-1" />
     </svg>
   ),
   calendar: (color) => (
