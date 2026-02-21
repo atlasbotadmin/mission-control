@@ -174,15 +174,14 @@ function MiniCalendar() {
   );
 }
 
-// Token Costs grouped bar chart data
+// Token Costs grouped bar chart data (monthly, 6 months)
 const TOKEN_COST_DATA = [
-  { day: 'Feb 14', estimated: 5.00, actual: 3.20 },
-  { day: 'Feb 15', estimated: 5.00, actual: 4.80 },
-  { day: 'Feb 16', estimated: 5.00, actual: 2.10 },
-  { day: 'Feb 17', estimated: 5.00, actual: 5.30 },
-  { day: 'Feb 18', estimated: 5.00, actual: 3.70 },
-  { day: 'Feb 19', estimated: 5.00, actual: 6.10 },
-  { day: 'Feb 20', estimated: 5.00, actual: 2.90 },
+  { day: 'Sep', estimated: 140, actual: 98 },
+  { day: 'Oct', estimated: 150, actual: 127 },
+  { day: 'Nov', estimated: 150, actual: 112 },
+  { day: 'Dec', estimated: 160, actual: 175 },
+  { day: 'Jan', estimated: 160, actual: 134 },
+  { day: 'Feb', estimated: 150, actual: 89 },
 ];
 
 function TokenCostsWidget() {
@@ -197,12 +196,12 @@ function TokenCostsWidget() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.42 }}
-      className="bg-card border border-border rounded-lg p-5"
+      className="bg-card border border-border rounded-lg p-5 flex flex-col flex-1"
     >
       <h2 className="text-sm font-medium text-[#ccc] uppercase tracking-wider mb-5">Token Costs</h2>
 
       {/* Grouped Bar Chart */}
-      <div className="relative">
+      <div className="relative flex-1 flex flex-col">
         {/* Gridlines */}
         <div className="absolute inset-0 flex flex-col justify-between pointer-events-none" style={{ paddingBottom: 28 }}>
           {[0, 1, 2, 3].map(i => (
@@ -211,10 +210,10 @@ function TokenCostsWidget() {
         </div>
 
         {/* Bars */}
-        <div className="flex items-end gap-3 relative" style={{ height: 160 }}>
+        <div className="flex items-end gap-3 relative flex-1" style={{ minHeight: 160 }}>
           {TOKEN_COST_DATA.map((d, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-1">
-              <div className="flex items-end gap-1 w-full justify-center" style={{ height: 128 }}>
+              <div className="flex items-end gap-1 w-full justify-center" style={{ height: '80%' }}>
                 {/* Estimated bar */}
                 <motion.div
                   className="flex-1 max-w-[14px] rounded-t-sm"
@@ -242,11 +241,11 @@ function TokenCostsWidget() {
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-2 rounded-sm" style={{ backgroundColor: 'rgba(136,136,136,0.3)' }} />
-            <span className="text-muted">Estimated: <span className="text-[#aaa]">${totalEst.toFixed(2)}</span></span>
+            <span className="text-muted">Estimated: <span className="text-[#aaa]">${totalEst}</span></span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-2 rounded-sm bg-[#0080FF]" />
-            <span className="text-muted">Actual: <span className="text-[#aaa]">${totalAct.toFixed(2)}</span></span>
+            <span className="text-muted">Actual: <span className="text-[#aaa]">${totalAct}</span></span>
           </div>
         </div>
         <motion.span
@@ -255,7 +254,7 @@ function TokenCostsWidget() {
           transition={{ delay: 1 }}
           className="text-xs font-bold px-2 py-0.5 rounded-full bg-[#00d4aa]/15 text-[#00d4aa]"
         >
-          ${savings.toFixed(2)} saved ({savingsPct}%)
+          ${savings} saved ({savingsPct}%)
         </motion.span>
       </div>
     </motion.div>
@@ -316,7 +315,7 @@ export default function Home() {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-6">
+          <div className="flex flex-col gap-6">
             {/* Weather Widget */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}

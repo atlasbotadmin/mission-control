@@ -36,13 +36,14 @@ const BUDGET_VS_ACTUAL = [
   { category: 'Other', budget: 500, actual: 400, color: '#EF4444' },
 ];
 
-const UPCOMING_EXPENSES = [
-  { name: 'Rent', date: 'Mar 1', amount: '$1,200', icon: '🏠' },
-  { name: 'Car Payment', date: 'Mar 5', amount: '$385', icon: '🚗' },
-  { name: 'Netflix', date: 'Mar 8', amount: '$15.99', icon: '📺' },
-  { name: 'Spotify', date: 'Mar 8', amount: '$10.99', icon: '🎵' },
-  { name: 'iCloud Storage', date: 'Mar 12', amount: '$2.99', icon: '☁️' },
-  { name: 'Internet', date: 'Mar 15', amount: '$79.99', icon: '🌐' },
+const SUBSCRIPTIONS = [
+  { name: 'Netflix', emoji: '🎬', cost: 15.99, billingDate: 'Mar 8', status: 'active' as const },
+  { name: 'Spotify', emoji: '🎵', cost: 10.99, billingDate: 'Mar 8', status: 'active' as const },
+  { name: 'iCloud', emoji: '☁️', cost: 2.99, billingDate: 'Mar 12', status: 'active' as const },
+  { name: 'YouTube Premium', emoji: '▶️', cost: 13.99, billingDate: 'Mar 15', status: 'active' as const },
+  { name: 'GitHub Pro', emoji: '🐙', cost: 4.00, billingDate: 'Mar 1', status: 'active' as const },
+  { name: 'ChatGPT Plus', emoji: '🤖', cost: 20.00, billingDate: 'Mar 3', status: 'paused' as const },
+  { name: 'Claude Pro', emoji: '🧠', cost: 20.00, billingDate: 'Mar 5', status: 'active' as const },
 ];
 
 export default function FinancesPage() {
@@ -166,7 +167,7 @@ export default function FinancesPage() {
           className="lg:col-span-2 bg-card border border-border rounded-xl p-6"
         >
           <h2 className="text-sm font-medium text-muted uppercase tracking-wider mb-6">Monthly Spending Trend</h2>
-          <svg viewBox={`0 0 ${lineW} ${lineH}`} className="w-full" style={{ height: 200 }} preserveAspectRatio="xMidYMid meet">
+          <svg viewBox={`0 0 ${lineW} ${lineH}`} className="w-full" preserveAspectRatio="xMidYMid meet">
             {/* Grid lines */}
             {[0, 0.25, 0.5, 0.75, 1].map((pct, i) => {
               const y = linePadT + plotH * (1 - pct);
@@ -294,31 +295,56 @@ export default function FinancesPage() {
           </div>
         </motion.div>
 
-        {/* Upcoming Expenses */}
+        {/* Subscription Tracker */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65 }}
           className="bg-card border border-border rounded-xl p-6"
         >
-          <h2 className="text-sm font-medium text-muted uppercase tracking-wider mb-6">Upcoming Expenses</h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-sm font-medium text-muted uppercase tracking-wider">Subscriptions</h2>
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-accent/15 text-[#10B981]">
+              {SUBSCRIPTIONS.filter(s => s.status === 'active').length} active
+            </span>
+          </div>
           <div className="space-y-0">
-            {UPCOMING_EXPENSES.map((expense, i) => (
-              <motion.div
-                key={expense.name}
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7 + i * 0.06 }}
-                className={`flex items-center gap-4 py-3 ${i > 0 ? 'border-t border-border/50' : ''}`}
-              >
-                <span className="text-lg w-8 text-center">{expense.icon}</span>
-                <div className="flex-1">
-                  <div className="text-sm font-medium">{expense.name}</div>
-                  <div className="text-xs text-muted">{expense.date}</div>
-                </div>
-                <span className="text-sm font-semibold" style={{ color: ACCENT }}>{expense.amount}</span>
-              </motion.div>
-            ))}
+            {SUBSCRIPTIONS.map((sub, i) => {
+              const statusColors = {
+                active: { bg: 'bg-[#10B981]/15', text: 'text-[#10B981]' },
+                paused: { bg: 'bg-[#F59E0B]/15', text: 'text-[#F59E0B]' },
+                cancelled: { bg: 'bg-red-400/15', text: 'text-red-400' },
+              };
+              const sc = statusColors[sub.status];
+              return (
+                <motion.div
+                  key={sub.name}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7 + i * 0.06 }}
+                  className={`flex items-center gap-4 py-3 ${i > 0 ? 'border-t border-border/50' : ''}`}
+                >
+                  <span className="text-lg w-8 text-center">{sub.emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium">{sub.name}</div>
+                    <div className="text-xs text-muted">{sub.billingDate}</div>
+                  </div>
+                  <span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>
+                    {sub.status}
+                  </span>
+                  <span className="text-sm font-semibold tabular-nums w-16 text-right" style={{ color: sub.status === 'active' ? ACCENT : '#555' }}>
+                    ${sub.cost.toFixed(2)}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </div>
+          {/* Total */}
+          <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
+            <span className="text-xs text-muted uppercase tracking-wider">Monthly Total</span>
+            <span className="text-lg font-bold" style={{ color: ACCENT }}>
+              ${SUBSCRIPTIONS.filter(s => s.status === 'active').reduce((sum, s) => sum + s.cost, 0).toFixed(2)}
+            </span>
           </div>
         </motion.div>
       </div>

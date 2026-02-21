@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en" className={`${oxanium.variable} ${exo2.variable}`}>
       <body className={exo2.className}>
         <Sidebar />
-        <main className="pl-16 h-screen overflow-y-auto flex-1">{children}</main>
+        <main className="md:pl-16 h-screen overflow-y-auto flex-1">{children}</main>
       </body>
     </html>
   );
