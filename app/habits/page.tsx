@@ -165,6 +165,102 @@ export default function HabitsPage() {
       />
 
       <div className="p-8 md:p-12 max-w-7xl mx-auto space-y-8">
+        {/* Heatmap */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="bg-card border border-border rounded-xl p-6"
+        >
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-lg font-semibold font-[family-name:var(--font-oxanium)]">
+              Activity Heatmap
+            </h2>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setSelectedHabit(null)}
+                className={`text-xs px-3 py-1.5 rounded-lg transition-colors ${
+                  !selectedHabit
+                    ? 'bg-accent text-white'
+                    : 'bg-border/50 text-muted hover:text-text'
+                }`}
+              >
+                Overall
+              </button>
+              {habits.map((h) => (
+                <button
+                  key={h.id}
+                  onClick={() => setSelectedHabit(h.id)}
+                  className={`text-xs px-3 py-1.5 rounded-lg transition-colors hidden md:block ${
+                    selectedHabit === h.id
+                      ? 'bg-accent text-white'
+                      : 'bg-border/50 text-muted hover:text-text'
+                  }`}
+                >
+                  {h.name.split(' ')[0]}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Day labels + grid */}
+          <div className="flex gap-2">
+            <div className="flex flex-col gap-[3px] pt-5">
+              {dayLabels.map((d) => (
+                <div key={d} className="h-[14px] text-[10px] text-muted flex items-center">
+                  {d}
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-[3px] flex-1 overflow-x-auto">
+              {heatmapData.map((week, wi) => (
+                <div key={wi} className="flex flex-col gap-[3px]">
+                  {(selectedHabit
+                    ? (week as boolean[]).map((v: boolean) => (v ? 1 : 0))
+                    : (week as number[])
+                  ).map((val: number, di: number) => {
+                    let color = '#1a1a1a';
+                    if (typeof val === 'number') {
+                      if (val >= 0.8) color = '#0080FF';
+                      else if (val >= 0.5) color = '#0080FFaa';
+                      else if (val > 0) color = '#0080FF40';
+                    }
+                    return (
+                      <motion.div
+                        key={di}
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{
+                          delay: 0.2 + wi * 0.03 + di * 0.01,
+                          duration: 0.2,
+                        }}
+                        className="w-[14px] h-[14px] rounded-[3px]"
+                        style={{ backgroundColor: color }}
+                        title={`Week ${wi + 1}, ${dayLabels[di]}: ${
+                          typeof val === 'number' ? Math.round(val * 100) + '%' : val ? 'Done' : 'Missed'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Legend */}
+          <div className="flex items-center gap-3 mt-4 justify-end">
+            <span className="text-[10px] text-muted">Less</span>
+            {['#1a1a1a', '#0080FF40', '#0080FFaa', '#0080FF'].map((c) => (
+              <div
+                key={c}
+                className="w-3 h-3 rounded-[2px]"
+                style={{ backgroundColor: c }}
+              />
+            ))}
+            <span className="text-[10px] text-muted">More</span>
+          </div>
+        </motion.div>
+
         {/* Today's Habits */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -306,102 +402,6 @@ export default function HabitsPage() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </motion.div>
-
-        {/* Heatmap */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="bg-card border border-border rounded-xl p-6"
-        >
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-lg font-semibold font-[family-name:var(--font-oxanium)]">
-              Activity Heatmap
-            </h2>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setSelectedHabit(null)}
-                className={`text-xs px-3 py-1.5 rounded-lg transition-colors ${
-                  !selectedHabit
-                    ? 'bg-accent text-white'
-                    : 'bg-border/50 text-muted hover:text-text'
-                }`}
-              >
-                Overall
-              </button>
-              {habits.map((h) => (
-                <button
-                  key={h.id}
-                  onClick={() => setSelectedHabit(h.id)}
-                  className={`text-xs px-3 py-1.5 rounded-lg transition-colors hidden md:block ${
-                    selectedHabit === h.id
-                      ? 'bg-accent text-white'
-                      : 'bg-border/50 text-muted hover:text-text'
-                  }`}
-                >
-                  {h.name.split(' ')[0]}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Day labels + grid */}
-          <div className="flex gap-2">
-            <div className="flex flex-col gap-[3px] pt-5">
-              {dayLabels.map((d) => (
-                <div key={d} className="h-[14px] text-[10px] text-muted flex items-center">
-                  {d}
-                </div>
-              ))}
-            </div>
-            <div className="flex gap-[3px] flex-1 overflow-x-auto">
-              {heatmapData.map((week, wi) => (
-                <div key={wi} className="flex flex-col gap-[3px]">
-                  {(selectedHabit
-                    ? (week as boolean[]).map((v: boolean) => (v ? 1 : 0))
-                    : (week as number[])
-                  ).map((val: number, di: number) => {
-                    let color = '#1a1a1a';
-                    if (typeof val === 'number') {
-                      if (val >= 0.8) color = '#0080FF';
-                      else if (val >= 0.5) color = '#0080FFaa';
-                      else if (val > 0) color = '#0080FF40';
-                    }
-                    return (
-                      <motion.div
-                        key={di}
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          delay: 0.5 + wi * 0.03 + di * 0.01,
-                          duration: 0.2,
-                        }}
-                        className="w-[14px] h-[14px] rounded-[3px]"
-                        style={{ backgroundColor: color }}
-                        title={`Week ${wi + 1}, ${dayLabels[di]}: ${
-                          typeof val === 'number' ? Math.round(val * 100) + '%' : val ? 'Done' : 'Missed'
-                        }`}
-                      />
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Legend */}
-          <div className="flex items-center gap-3 mt-4 justify-end">
-            <span className="text-[10px] text-muted">Less</span>
-            {['#1a1a1a', '#0080FF40', '#0080FFaa', '#0080FF'].map((c) => (
-              <div
-                key={c}
-                className="w-3 h-3 rounded-[2px]"
-                style={{ backgroundColor: c }}
-              />
-            ))}
-            <span className="text-[10px] text-muted">More</span>
           </div>
         </motion.div>
 

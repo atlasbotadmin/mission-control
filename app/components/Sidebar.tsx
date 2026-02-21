@@ -36,16 +36,9 @@ const icons: Record<string, (color: string) => ReactNode> = {
   ),
   certifications: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      {/* Rolled parchment / scroll */}
-      <path d="M18 2H8a2 2 0 0 0-2 2v1a2 2 0 0 0 2-2h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H8a2 2 0 0 0-2 2" />
-      <path d="M6 5v14a2 2 0 0 0 2 2h10a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H8a2 2 0 0 0-2 2z" />
-      {/* Lines on scroll */}
-      <path d="M9 9h6" />
-      <path d="M9 13h4" />
-      {/* Top roll curl */}
-      <path d="M6 5a2 2 0 0 1 2-2" />
-      {/* Bottom roll curl */}
-      <path d="M6 19a2 2 0 0 0 2 2" />
+      <circle cx="12" cy="9" r="6" />
+      <path d="M12 15l-3 7 3-2 3 2-3-7" />
+      <path d="M10 7l1 2h2l1-2" />
     </svg>
   ),
   finances: (color) => (
@@ -60,12 +53,10 @@ const icons: Record<string, (color: string) => ReactNode> = {
   ),
   habits: (color) => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 20V10" />
-      <path d="M18 20V4" />
-      <path d="M6 20v-4" />
-      <circle cx="6" cy="14" r="2" />
-      <circle cx="12" cy="8" r="2" />
-      <circle cx="18" cy="2" r="2" />
+      <path d="M12 22V12" />
+      <path d="M12 12c-3-4-7-3-8-1s1 5 4 5" />
+      <path d="M12 12c3-4 7-3 8-1s-1 5-4 5" />
+      <path d="M12 12c-2-5-1-9 0-10 1 1 2 5 0 10" />
     </svg>
   ),
   calendar: (color) => (
@@ -95,12 +86,12 @@ const icons: Record<string, (color: string) => ReactNode> = {
 };
 
 const navItems = [
-  { href: '/projects', icon: 'projects', label: 'Tasks' },
-  { href: '/certifications', icon: 'certifications', label: 'Certifications' },
-  { href: '/habits', icon: 'habits', label: 'Habits' },
   { href: '/calendar', icon: 'calendar', label: 'Calendar' },
   { href: '/finances', icon: 'finances', label: 'Finances' },
+  { href: '/habits', icon: 'habits', label: 'Habits' },
+  { href: '/projects', icon: 'projects', label: 'Tasks' },
   { href: '/travel', icon: 'travel', label: 'Travel' },
+  { href: '/certifications', icon: 'certifications', label: 'Certifications' },
 ];
 
 const bottomItems = [
